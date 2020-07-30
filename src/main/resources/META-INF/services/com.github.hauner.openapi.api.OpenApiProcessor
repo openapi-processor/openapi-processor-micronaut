@@ -1,1 +1,1 @@
-com.github.hauner.openapi.spring.processor.SpringProcessor
+com.github.hauner.openapi.micronaut.processor.MicronautProcessor
