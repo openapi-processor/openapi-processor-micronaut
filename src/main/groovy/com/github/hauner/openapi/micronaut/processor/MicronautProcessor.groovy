@@ -15,7 +15,6 @@
  */
 package com.github.hauner.openapi.micronaut.processor
 
-import com.github.hauner.openapi.api.OpenApiProcessor
 import com.github.hauner.openapi.micronaut.writer.java.HeaderWriter
 import com.github.hauner.openapi.micronaut.writer.java.MappingAnnotationWriter
 import com.github.hauner.openapi.micronaut.writer.java.ParameterAnnotationWriter
@@ -31,6 +30,7 @@ import com.github.hauner.openapi.core.writer.java.DataTypeWriter
 import com.github.hauner.openapi.core.writer.java.InterfaceWriter
 import com.github.hauner.openapi.core.writer.java.MethodWriter
 import com.github.hauner.openapi.core.writer.java.StringEnumWriter
+import io.openapiprocessor.api.OpenApiProcessor
 import org.slf4j.LoggerFactory
 
 /**
