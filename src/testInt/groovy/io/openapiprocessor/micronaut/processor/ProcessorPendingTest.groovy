@@ -14,35 +14,29 @@
  * limitations under the License.
  */
 
-package com.github.hauner.openapi.processor.spring
+package io.openapiprocessor.micronaut.processor
 
 import com.github.hauner.openapi.core.parser.ParserType
-import com.github.hauner.openapi.spring.processor.SpringProcessor
+import com.github.hauner.openapi.micronaut.processor.MicronautProcessor
 import com.github.hauner.openapi.test.TestSet
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-/**
- * using Junit so IDEA adds a "<Click to see difference>" when using assertEquals().
- */
+//@Ignore
 @RunWith(Parameterized)
-class ProcessorEndToEndTest extends EndToEndBase {
+class ProcessorPendingTest extends EndToEndBase {
 
     @Parameterized.Parameters(name = "{0}")
     static Collection<TestSet> sources () {
-        def swagger = TestSets.ALL.collect {
-           new TestSet (name: it, processor: new SpringProcessor(), parser: ParserType.SWAGGER)
-        }
-
-        def openapi4j = TestSets.ALL.collect {
-           new TestSet (name: it, processor: new SpringProcessor(), parser: ParserType.OPENAPI4J)
-        }
-
-        swagger + openapi4j
+        return [
+            new TestSet(name: 'params-request-body-multipart-mapping', processor: new MicronautProcessor (), parser: ParserType.SWAGGER),
+            new TestSet(name: 'params-request-body-multipart-mapping', processor: new MicronautProcessor (), parser: ParserType.OPENAPI4J),
+        ]
     }
 
-    ProcessorEndToEndTest (TestSet testSet) {
+    ProcessorPendingTest (TestSet testSet) {
         super (testSet)
     }
 

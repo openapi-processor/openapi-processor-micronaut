@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 the original authors
+ * Copyright 2019-2020 the original authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,11 @@
  * limitations under the License.
  */
 
-package com.github.hauner.openapi.processor.spring
+package io.openapiprocessor.micronaut.processor
 
 import com.github.hauner.openapi.core.parser.ParserType
-import com.github.hauner.openapi.spring.processor.SpringProcessor
-import com.github.hauner.openapi.test.ProcessorTestBase
+import com.github.hauner.openapi.micronaut.processor.MicronautProcessor
 import com.github.hauner.openapi.test.TestSet
-import com.google.common.jimfs.Configuration
-import com.google.common.jimfs.Jimfs
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -30,25 +27,28 @@ import org.junit.runners.Parameterized
  * using Junit so IDEA adds a "<Click to see difference>" when using assertEquals().
  */
 @RunWith(Parameterized)
-class ProcessorJimsFileSystemTest extends EndToEndBase {
+class ProcessorEndToEndTest extends EndToEndBase {
 
     @Parameterized.Parameters(name = "{0}")
     static Collection<TestSet> sources () {
-        // the swagger parser does not work with a custom FileSystem so we just run the test with
-        // openapi4j
-
-        TestSets.ALL.collect {
-           new TestSet (name: it, processor: new SpringProcessor(), parser: ParserType.OPENAPI4J)
+        def swagger = TestSets.ALL.collect {
+           new TestSet (name: it, processor: new MicronautProcessor (), parser: ParserType.SWAGGER)
         }
+
+        def openapi4j = TestSets.ALL.collect {
+           new TestSet (name: it, processor: new MicronautProcessor (), parser: ParserType.OPENAPI4J)
+        }
+
+        swagger + openapi4j
     }
 
-    ProcessorJimsFileSystemTest (TestSet testSet) {
+    ProcessorEndToEndTest (TestSet testSet) {
         super (testSet)
     }
 
     @Test
-    void "jimfs - processor creates expected files for api set "() {
-        runOnCustomFileSystem (Jimfs.newFileSystem (Configuration.unix ()))
+    void "native - processor creates expected files for api set "() {
+        runOnNativeFileSystem ()
     }
 
 }
