@@ -1,10 +1,9 @@
-openapi-processor-spring: v2
+openapi-processor-mapping: v2
 
 options:
   package-name: generated
 
 map:
-  result: org.springframework.http.ResponseEntity
 
   types:
-    - type: string:binary => org.springframework.web.multipart.MultipartFile
+    - type: string:binary => io.micronaut.http.multipart.CompletedFileUpload
