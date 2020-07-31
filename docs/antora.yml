@@ -1,5 +1,5 @@
-name: spring
-title: oap-spring
+name: micronaut
+title: oap-micronaut
 version: master
 #start_page: ROOT:index.adoc
 nav:

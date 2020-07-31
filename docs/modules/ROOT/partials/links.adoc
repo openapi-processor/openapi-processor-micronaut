@@ -2,15 +2,15 @@
 // external openapi-processor links
 //
 :badge-license: https://img.shields.io/badge/License-Apache%202.0-blue.svg?labelColor=313A42
-:badge-ci: https://github.com/openapi-processor/openapi-processor-spring/workflows/ci/badge.svg
-:oaps-ci: https://github.com/openapi-processor/openapi-processor-spring/actions?query=workflow%3Aci
-:oaps-issues: https://github.com/openapi-processor/openapi-processor-spring/issues
-:oaps-inttests: https://github.com/openapi-processor/openapi-processor-spring/tree/master/src/testInt/resources
-:oaps-license: https://github.com/openapi-processor/openapi-processor-spring/blob/master/LICENSE
-:oaps-releases: https://github.com/openapi-processor/openapi-processor-spring/releases
-:oaps-bintray: https://bintray.com/openapi-processor/openapi-processor
+:badge-ci: https://github.com/openapi-processor/openapi-processor-micronaut/workflows/ci/badge.svg
+:oapm-ci: https://github.com/openapi-processor/openapi-processor-micronaut/actions?query=workflow%3Aci
+:oapm-issues: https://github.com/openapi-processor/openapi-processor-micronaut/issues
+:oapm-inttests: https://github.com/openapi-processor/openapi-processor-micronaut/tree/master/src/testInt/resources
+:oapm-license: https://github.com/openapi-processor/openapi-processor-micronaut/blob/master/LICENSE
+:oapm-releases: https://github.com/openapi-processor/openapi-processor-micronaut/releases
+:oap-bintray: https://bintray.com/openapi-processor/openapi-processor
 :oap-gradle: https://github.com/openapi-processor/openapi-processor-gradle
-:oap-playground: https://openapi-processor-playground.appspot.com
+:oap-playground: https://playgroud.openapiprocessor.io
 
 //
 // other external links
@@ -24,8 +24,7 @@
 :swagger-parser: https://github.com/swagger-api/swagger-parser
 :openapi4j: https://github.com/openapi4j/openapi4j
 
-:springboot: https://spring.io/projects/spring-boot
+:micronaut: https://micronaut.io
 :license: http://www.apache.org/licenses/LICENSE-2.0.txt
 :bean-validation: https://beanvalidation.org/
 
-:spring-responseentity: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html
