@@ -22,6 +22,7 @@ import com.github.hauner.openapi.core.model.RequestBody
 import com.github.hauner.openapi.core.model.Response
 import com.github.hauner.openapi.core.model.datatypes.NoneDataType
 import com.github.hauner.openapi.core.model.datatypes.StringDataType
+import com.github.hauner.openapi.core.model.parameters.MultipartParameter
 import spock.lang.Specification
 
 class MappingAnnotationWriterSpec extends Specification {
@@ -132,6 +133,24 @@ class MappingAnnotationWriterSpec extends Specification {
 
         then:
         target.toString () == """@Get(uri = "${endpoint.path}", produces = {"${endpoint.responses.'200'.first ().contentType}", "${endpoint.responses.'default'.first ().contentType}"})"""
+    }
+
+    void "writes 'consumes' of multipart/form-data" () {
+        def endpoint = createEndpoint (path: '/foo', method: HttpMethod.GET,
+            parameters: [
+                new MultipartParameter (),
+                new MultipartParameter ()
+            ],
+            responses: [
+                '204' : [new Response(responseType: new NoneDataType())]
+            ]
+        )
+
+        when:
+        writer.write (target, endpoint, endpoint.endpointResponses.first ())
+
+        then:
+        target.toString () == """@Get(uri = "${endpoint.path}", consumes = {"multipart/form-data"})"""
     }
 
     private Endpoint createEndpoint (Map properties) {

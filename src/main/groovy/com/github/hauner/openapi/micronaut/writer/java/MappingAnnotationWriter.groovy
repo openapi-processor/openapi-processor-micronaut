@@ -37,20 +37,23 @@ class MappingAnnotationWriter implements CoreMappingAnnotationWriter {
         mapping += "("
         mapping += 'uri = ' + quote(endpoint.path)
 
-        if (!endpoint.requestBodies.empty) {
+        def consumes = endpoint.consumesContentTypes
+        if (!consumes.empty) {
             mapping += ", "
-            mapping += 'consumes = {' + quote(endpoint.requestBody.contentType) + '}'
+            mapping += 'consumes = {'
+            mapping +=  consumes.collect {
+                quote(it)
+            }.join (', ')
+            mapping += '}'
         }
 
-        def contentTypes = endpointResponse.contentTypes
-        if (!contentTypes.empty) {
+        def produces = endpointResponse.contentTypes
+        if (!produces.empty) {
             mapping += ", "
             mapping += 'produces = {'
-
-            mapping += contentTypes.collect {
+            mapping += produces.collect {
                 quote (it)
             }.join (', ')
-
             mapping += '}'
         }
 
