@@ -29,11 +29,11 @@ class QueryParameter(name: String, dataType: DataType, required: Boolean, deprec
     : ParameterBase(name, dataType, required, deprecated) {
 
     /**
-     * controls if a {@code @RequestParam} should have any parameters.
+     * controls if a parameter should have a {@code @RequestParam} annotation.
      */
-    override val withParameters: Boolean
+    override val withAnnotation: Boolean
         get() {
-            // Pojo should NOT be annotated
+            // Pojo's should NOT be annotated
             if (dataType is ObjectDataType) {
                 return false
             }
