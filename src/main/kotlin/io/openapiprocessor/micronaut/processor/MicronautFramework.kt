@@ -14,27 +14,28 @@
  * limitations under the License.
  */
 
-package com.github.hauner.openapi.micronaut.processor
+package io.openapiprocessor.micronaut.processor
 
-import com.github.hauner.openapi.core.framework.FrameworkBase
-import com.github.hauner.openapi.core.model.datatypes.DataType
-import com.github.hauner.openapi.core.model.parameters.Parameter
-import com.github.hauner.openapi.micronaut.model.parameters.QueryParameter
-import com.github.hauner.openapi.core.parser.Parameter as ParserParameter
+import io.openapiprocessor.core.framework.FrameworkBase
+import io.openapiprocessor.core.model.datatypes.DataType
+import io.openapiprocessor.core.model.parameters.Parameter
+import io.openapiprocessor.micronaut.model.parameters.QueryParameter
+import io.openapiprocessor.core.parser.Parameter as ParserParameter
 
 /**
  * Micronaut model factory.
  *
  * @author Martin Hauner
  */
-class MicronautFramework extends FrameworkBase {
+class MicronautFramework: FrameworkBase() {
 
     @Override
-        Parameter createQueryParameter (ParserParameter parameter, DataType dataType) {
-        new QueryParameter (
-            name: parameter.name,
-            required: parameter.required,
-            dataType: dataType)
+    override fun createQueryParameter(parameter: ParserParameter, dataType: DataType): Parameter {
+        return QueryParameter (
+            parameter.getName(),
+            dataType,
+            parameter.isRequired(),
+            parameter.isDeprecated())
     }
 
 }
