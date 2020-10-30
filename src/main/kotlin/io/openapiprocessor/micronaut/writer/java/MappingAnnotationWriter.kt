@@ -37,9 +37,14 @@ class MappingAnnotationWriter: CoreMappingAnnotationWriter {
         mapping += "("
         mapping += "uri = " + quote(endpoint.path)
 
-        if (endpoint.requestBodies.isNotEmpty()) {
+        val consumes = endpoint.getConsumesContentTypes()
+        if (consumes.isNotEmpty()) {
             mapping += ", "
-            mapping += "consumes = {" + quote(endpoint.getRequestBody().contentType) + "}"
+            mapping += "consumes = {"
+            mapping +=  consumes.map {
+                quote(it)
+            }.joinToString(", ")
+            mapping += '}'
         }
 
         val contentTypes = endpointResponse.contentTypes
@@ -53,17 +58,6 @@ class MappingAnnotationWriter: CoreMappingAnnotationWriter {
 
             mapping += "}"
         }
-
-        /*
-        def consumes = endpoint.consumesContentTypes
-        if (!consumes.empty) {
-            mapping += ", "
-            mapping += 'consumes = {'
-            mapping +=  consumes.collect {
-                quote(it)
-            }.join (', ')
-            mapping += '}'
-        }*/
 
         mapping += ")"
         return mapping
