@@ -16,8 +16,7 @@
 
 package io.openapiprocessor.micronaut.processor
 
-import com.github.hauner.openapi.core.parser.ParserType
-import com.github.hauner.openapi.micronaut.processor.MicronautProcessor
+import io.openapiprocessor.core.parser.ParserType
 import com.github.hauner.openapi.test.TestSet
 import com.google.common.jimfs.Configuration
 import com.google.common.jimfs.Jimfs
