@@ -14,28 +14,31 @@
  * limitations under the License.
  */
 
-package com.github.hauner.openapi.micronaut.model.parameters
+package io.openapiprocessor.micronaut.model.parameter
 
-import com.github.hauner.openapi.core.model.datatypes.ObjectDataType
-import com.github.hauner.openapi.core.model.parameters.ParameterBase
+import io.openapiprocessor.core.model.datatypes.DataType
+import io.openapiprocessor.core.model.datatypes.ObjectDataType
+import io.openapiprocessor.core.model.parameters.ParameterBase
 
 /**
  * OpenAPI query parameter.
  *
  * @author Martin Hauner
  */
-class QueryParameter extends ParameterBase {
+class QueryParameter(name: String, dataType: DataType, required: Boolean, deprecated: Boolean)
+    : ParameterBase(name, dataType, required, deprecated) {
 
     /**
-     * controls if a parameter should have a {@code @QueryValue} annotation.
+     * controls if a {@code @RequestParam} should have any parameters.
      */
-    boolean withAnnotation () {
-        // Pojo's should NOT be annotated
-        if (dataType instanceof ObjectDataType) {
-            return false
-        }
+    override val withParameters: Boolean
+        get() {
+            // Pojo should NOT be annotated
+            if (dataType is ObjectDataType) {
+                return false
+            }
 
-        true
-    }
+            return true
+        }
 
 }
