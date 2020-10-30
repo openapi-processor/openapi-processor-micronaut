@@ -16,6 +16,8 @@
 
 package com.github.hauner.openapi.micronaut.writer.java
 
+import io.openapiprocessor.micronaut.writer.java.HeaderWriter
+import io.openapiprocessor.micronaut.writer.java.HeaderWriterKt
 import spock.lang.Specification
 
 class HeaderWriterSpec extends Specification {
@@ -28,7 +30,7 @@ class HeaderWriterSpec extends Specification {
         headerWriter.write (target)
 
         then:
-        target.toString () == HeaderWriter.HEADER
+        target.toString () == HeaderWriterKt.HEADER
     }
 
 }
