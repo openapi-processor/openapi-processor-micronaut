@@ -16,10 +16,11 @@
 
 package com.github.hauner.openapi.micronaut.writer.java
 
-import com.github.hauner.openapi.core.model.parameters.PathParameter
-import com.github.hauner.openapi.micronaut.processor.MicronautFrameworkAnnotations
-import com.github.hauner.openapi.core.model.datatypes.DataTypeConstraints
-import com.github.hauner.openapi.core.model.datatypes.StringDataType
+import io.openapiprocessor.core.model.parameters.PathParameter
+import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
+import io.openapiprocessor.core.model.datatypes.StringDataType
+import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
+import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
 import spock.lang.Specification
 
 class PathParameterAnnotationWriterSpec extends Specification {
