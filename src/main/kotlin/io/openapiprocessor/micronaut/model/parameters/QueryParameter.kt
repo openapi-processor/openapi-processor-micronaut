@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.openapiprocessor.micronaut.model.parameter
+package io.openapiprocessor.micronaut.model.parameters
 
 import io.openapiprocessor.core.model.datatypes.DataType
 import io.openapiprocessor.core.model.datatypes.ObjectDataType
