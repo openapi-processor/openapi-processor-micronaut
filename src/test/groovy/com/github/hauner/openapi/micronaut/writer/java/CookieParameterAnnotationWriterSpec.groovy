@@ -16,18 +16,19 @@
 
 package com.github.hauner.openapi.micronaut.writer.java
 
-import com.github.hauner.openapi.core.model.parameters.CookieParameter
-import com.github.hauner.openapi.micronaut.processor.MicronautFrameworkAnnotations
-import com.github.hauner.openapi.core.model.datatypes.DataTypeConstraints
-import com.github.hauner.openapi.core.model.datatypes.StringDataType
+import io.openapiprocessor.core.model.parameters.CookieParameter
+import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
+import io.openapiprocessor.core.model.datatypes.StringDataType
+import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
+import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
 import spock.lang.Specification
 
 class CookieParameterAnnotationWriterSpec extends Specification {
-    def writer = new ParameterAnnotationWriter(annotations: new MicronautFrameworkAnnotations ())
+    def writer = new ParameterAnnotationWriter(new MicronautFrameworkAnnotations ())
     def target = new StringWriter()
 
     void "write simple (required) cookie parameter" () {
-        def param = new CookieParameter(name: 'foo', dataType: new StringDataType())
+        def param = new CookieParameter('foo', new StringDataType(), true, false)
 
         when:
         writer.write (target, param)
@@ -37,8 +38,9 @@ class CookieParameterAnnotationWriterSpec extends Specification {
     }
 
     void "write simple (optional, with default value) cookie parameter" () {
-        def param = new CookieParameter(name: 'foo',
-            dataType: new StringDataType(constraints: new DataTypeConstraints(defaultValue: 'bar')))
+        def param = new CookieParameter('foo',
+            new StringDataType(new DataTypeConstraints(defaultValue: 'bar'), false),
+            false, false)
 
         when:
         writer.write (target, param)

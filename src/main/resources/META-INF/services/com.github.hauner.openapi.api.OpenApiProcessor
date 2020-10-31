@@ -1,1 +1,1 @@
-com.github.hauner.openapi.micronaut.processor.MicronautProcessor
+io.openapiprocessor.micronaut.processor.MicronautProcessor

@@ -16,10 +16,8 @@
 
 package io.openapiprocessor.micronaut.processor
 
-import com.github.hauner.openapi.core.parser.ParserType
-import com.github.hauner.openapi.micronaut.processor.MicronautProcessor
+import io.openapiprocessor.core.parser.ParserType
 import com.github.hauner.openapi.test.TestSet
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
