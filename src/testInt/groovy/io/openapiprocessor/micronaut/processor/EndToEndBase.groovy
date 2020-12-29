@@ -5,20 +5,12 @@
 
 package io.openapiprocessor.micronaut.processor
 
-import io.openapiprocessor.micronaut.writer.java.HeaderWriter
-import com.github.hauner.openapi.test.ProcessorTestBase
-import com.github.hauner.openapi.test.TestSet
 import io.openapiprocessor.micronaut.writer.java.HeaderWriterKt
-import org.junit.BeforeClass
+import spock.lang.Specification
 
-class EndToEndBase extends ProcessorTestBase {
+class EndToEndBase extends Specification {
 
-    EndToEndBase (TestSet testSet) {
-        super (testSet)
-    }
-
-    @BeforeClass
-    static void setConstantHeaderWriterText () {
+    void setupSpec () {
         // set a "fixed" header, we don't want moving version/date/time parts
 
         HeaderWriterKt.HEADER = """\

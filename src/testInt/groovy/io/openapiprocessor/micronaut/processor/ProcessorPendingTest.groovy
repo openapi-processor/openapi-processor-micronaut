@@ -7,15 +7,13 @@ package io.openapiprocessor.micronaut.processor
 
 import io.openapiprocessor.core.parser.ParserType
 import com.github.hauner.openapi.test.TestSet
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
+import io.openapiprocessor.test.TestSetRunner
+import spock.lang.TempDir
+import spock.lang.Unroll
 
 //@Ignore
-@RunWith(Parameterized)
 class ProcessorPendingTest extends EndToEndBase {
 
-    @Parameterized.Parameters(name = "{0}")
     static Collection<TestSet> sources () {
         return [
             new TestSet(name: 'params-request-body-multipart-mapping', processor: new MicronautProcessor (), parser: ParserType.SWAGGER),
@@ -23,13 +21,19 @@ class ProcessorPendingTest extends EndToEndBase {
         ]
     }
 
-    ProcessorPendingTest (TestSet testSet) {
-        super (testSet)
-    }
+    @TempDir
+    public File folder
 
-    @Test
-    void "native - processor creates expected files for api set "() {
-        runOnNativeFileSystem ()
+    @Unroll
+    void "native - #testSet"() {
+        def runner = new TestSetRunner (testSet)
+        def success = runner.runOnNativeFileSystem (folder)
+
+        expect:
+        assert success: "** found differences! **"
+
+        where:
+        testSet << sources ()
     }
 
 }
