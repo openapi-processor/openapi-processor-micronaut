@@ -19,7 +19,8 @@ class QueryParameterAnnotationWriterSpec extends Specification {
     def target = new StringWriter()
 
     void "write simple (required, no default value) query parameter" () {
-        def param = new QueryParameter('foo', new StringDataType(), true, false)
+        def param = new QueryParameter(
+            'foo', new StringDataType(), true, false, null)
 
         when:
         writer.write (target, param)
@@ -31,7 +32,7 @@ class QueryParameterAnnotationWriterSpec extends Specification {
     void "write simple (optional, with default value) query parameter" () {
         def param = new QueryParameter('foo',
             new StringDataType(new DataTypeConstraints(defaultValue: 'bar'), false),
-            false, false)
+            false, false, null)
 
         when:
         writer.write (target, param)
@@ -43,7 +44,7 @@ class QueryParameterAnnotationWriterSpec extends Specification {
     void "writes simple (optional) query parameter with quoted string default value" () {
         def param = new QueryParameter('foo',
             new StringDataType(new DataTypeConstraints (defaultValue: 'bar'), false),
-            false, false)
+            false, false, null)
 
         when:
         writer.write (target, param)
@@ -55,7 +56,7 @@ class QueryParameterAnnotationWriterSpec extends Specification {
     void "writes simple (optional) query parameter with quoted number default value" () {
         def param = new QueryParameter('foo',
             new LongDataType (new DataTypeConstraints (defaultValue: 5), false),
-            false, false)
+            false, false, null)
 
         when:
         writer.write (target, param)
@@ -72,7 +73,7 @@ class QueryParameterAnnotationWriterSpec extends Specification {
                     foo1: new StringDataType (),
                     foo2: new StringDataType ()
                 ], null, false
-            ), false, false)
+            ), false, false, null)
 
         when:
         writer.write (target, param)

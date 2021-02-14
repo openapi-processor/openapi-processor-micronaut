@@ -17,7 +17,8 @@ class PathParameterAnnotationWriterSpec extends Specification {
     def target = new StringWriter()
 
     void "write simple (required, no default value) path parameter" () {
-        def param = new PathParameter('foo', new StringDataType(), false, false)
+        def param = new PathParameter(
+            'foo', new StringDataType(), false, false, null)
 
         when:
         writer.write (target, param)
@@ -29,7 +30,7 @@ class PathParameterAnnotationWriterSpec extends Specification {
     void "write simple (optional, with default value) path parameter" () {
         def param = new PathParameter('foo',
             new StringDataType(new DataTypeConstraints(defaultValue: 'bar'), false),
-            false, false)
+            false, false, null)
 
         when:
         writer.write (target, param)

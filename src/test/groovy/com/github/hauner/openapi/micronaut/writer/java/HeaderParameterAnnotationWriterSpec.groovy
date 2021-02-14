@@ -17,7 +17,8 @@ class HeaderParameterAnnotationWriterSpec extends Specification {
     def target = new StringWriter()
 
     void "write simple (required) header parameter" () {
-        def param = new HeaderParameter('foo', new StringDataType(), false, false)
+        def param = new HeaderParameter(
+            'foo', new StringDataType(), false, false, null)
 
         when:
         writer.write (target, param)
@@ -29,7 +30,7 @@ class HeaderParameterAnnotationWriterSpec extends Specification {
     void "write simple (optional, with default value) header parameter" () {
         def param = new HeaderParameter('foo',
             new StringDataType(new DataTypeConstraints(defaultValue: 'bar'), false),
-            false, false)
+            false, false, null)
 
         when:
         writer.write (target, param)

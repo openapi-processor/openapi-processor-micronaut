@@ -66,7 +66,7 @@ class MappingAnnotationWriterSpec extends Specification {
     void "writes 'produces' parameter with response content type" () {
         def endpoint = createEndpoint (path: '/foo', method: HttpMethod.GET, responses: [
             '200' : [
-                new Response (contentType, new StringDataType ())
+                new Response (contentType, new StringDataType (), null)
             ],
         ])
 
@@ -85,7 +85,7 @@ class MappingAnnotationWriterSpec extends Specification {
     void "writes 'consumes' & 'produces' parameters" () {
         def endpoint = createEndpoint (path: '/foo', method: HttpMethod.GET, responses: [
             '200' : [
-                new Response (responseContentType, new StringDataType ())
+                new Response (responseContentType, new StringDataType (), null)
             ]
         ], requestBodies: [
             new RequestBody('body', requestContentType, new StringDataType (), false, false)
@@ -105,10 +105,10 @@ class MappingAnnotationWriterSpec extends Specification {
     void "writes mapping annotation with multiple result content types" () {
         def endpoint = createEndpoint (path: '/foo', method: HttpMethod.GET, responses: [
             '200' : [
-                new Response ('application/json', new StringDataType ())
+                new Response ('application/json', new StringDataType (), null)
             ],
             'default': [
-                new Response ('text/plain', new StringDataType ())
+                new Response ('text/plain', new StringDataType (), null)
             ]
         ])
 
@@ -123,8 +123,8 @@ class MappingAnnotationWriterSpec extends Specification {
     void "writes 'consumes' of multipart/form-data" () {
         def endpoint = createEndpoint (path: '/foo', method: HttpMethod.GET,
             parameters: [
-                new MultipartParameter ('mp1', new StringDataType(), false, false),
-                new MultipartParameter ('mp2', new StringDataType(), false, false)
+                new MultipartParameter ('mp1', new StringDataType(), false, false, null),
+                new MultipartParameter ('mp2', new StringDataType(), false, false, null)
             ],
             responses: [
                 '204' : [new EmptyResponse ()]
@@ -144,7 +144,8 @@ class MappingAnnotationWriterSpec extends Specification {
             properties.path as String ?: '',
             properties.method as HttpMethod ?: HttpMethod.GET,
             properties.operationId as String ?: null,
-            properties.deprecated as boolean ?: false
+            properties.deprecated as boolean ?: false,
+            properties.description as String ?: null
         )
         ep.parameters = properties.parameters ?: []
         ep.responses = properties.responses ?: [:]
