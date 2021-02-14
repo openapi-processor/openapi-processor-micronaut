@@ -30,15 +30,12 @@ jobs:
         with:
           java-version: 11
 
-      - name: publish release to bintray
+      - name: publish release
         env:
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
-        run: ./gradlew publishRelease
-
-#      - name: archive test results
-#        uses: actions/upload-artifact@v1
-#        if: always()
-#        with:
-#          name: test results
-#          path: build/reports
+          PUBLISH_USER: ${{ secrets.PUBLISH_USER }}
+          PUBLISH_KEY: ${{ secrets.PUBLISH_KEY }}
+          SIGN_KEY: ${{ secrets.SIGN_KEY }}
+          SIGN_PWD: ${{ secrets.SIGN_PWD }}
+        run: |
+          ./gradlew publishRelease
+          ./gradlew --stop
