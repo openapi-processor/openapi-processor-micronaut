@@ -5,6 +5,7 @@ plugins {
     id 'groovy'
     id 'java-library'
     id 'maven-publish'
+    id 'signing'
     id "org.sonarqube" version "3.0"
     id 'org.jetbrains.dokka' version '1.4.20'
     id 'org.jetbrains.kotlin.jvm' version '1.4.21'
@@ -14,6 +15,15 @@ plugins {
 
 group projectGroupId
 version projectVersion
+
+String getBuildProperty(String property) {
+    project.findProperty (property) ?: System.getenv (property) ?: 'n/a'
+}
+
+String getBuildSignKey(String property) {
+    project.findProperty (property) ?:
+        System.getenv (property) ? System.getenv (property).replace("\\n", "\n"): 'n/a'
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -27,8 +37,13 @@ ext {
     processorTestVersion = '2020.3-SNAPSHOT' // '2020.2'
     jacksonVersion = '2.12.0'
 
-    bintrayUser = project.findProperty ('BINTRAY_USER') ?: System.getenv ("BINTRAY_USER") ?: 'n/a'
-    bintrayKey =  project.findProperty ('BINTRAY_KEY') ?: System.getenv ("BINTRAY_KEY") ?: 'n/a'
+    publishUser = getBuildProperty ('PUBLISH_USER')
+    publishKey =  getBuildProperty ('PUBLISH_KEY')
+
+    signKey = getBuildSignKey ('SIGN_KEY')
+    signPwd = getBuildProperty ('SIGN_PWD')
+
+    isReleaseVersion = !version.endsWith("SNAPSHOT")
 }
 
 repositories {
