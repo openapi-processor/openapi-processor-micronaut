@@ -11,6 +11,8 @@
 :oap-bintray: https://bintray.com/openapi-processor/openapi-processor
 :oap-gradle: https://github.com/openapi-processor/openapi-processor-gradle
 :oap-playground: https://playgroud.openapiprocessor.io
+:oap-central: https://search.maven.org/search?q=io.openapiprocessor
+:badge-central: https://img.shields.io/maven-central/v/io.openapiprocessor/openapi-processor-micronaut?label=Maven%20Central
 
 //
 // other external links

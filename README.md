@@ -1,7 +1,6 @@
 [![][badge-ci]][workflow-ci]
-
-[comment]: <> ([![][sonar-coverage]][sonar])
-[comment]: <> ([![][badge-central]][oap-central])
+[![][sonar-coverage]][sonar]
+[![][badge-central]][oap-central]
 
 ![openapi-processor-micronaut logo](images/openapi-processor-micronaut@1280x200.png)
 

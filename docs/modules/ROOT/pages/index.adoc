@@ -11,6 +11,7 @@ image:openapi-processor-micronaut$$@$$1280x200.png[openapi-processor-micronaut]
 // badges
 link:{oapm-ci}[image:{badge-ci}[]]
 link:{oapm-license}[image:{badge-license}[]]
+link:{oap-central}[image:{badge-central}[]]
 
 
 *openapi-processor-micronaut* is an link:{openapi}[OpenAPI] interface & model java code generator for link:{micronaut}[Micronaut].
