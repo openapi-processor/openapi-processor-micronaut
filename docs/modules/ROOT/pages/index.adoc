@@ -30,5 +30,5 @@ The target programming language is Java so the generated code is usable from mos
 
 == documentation
 
-openapi-processor-micronaut doesn't have micronaut specific documentation so far. Follow the xref:spring::index.adoc[openapi-processor-spring] documentation. Most of it is valid for the micronaut processor. Just replace the Spring Boot annotation with the Micronaut annotations.
+openapi-processor-micronaut doesn't have micronaut specific documentation so far. Follow the xref:spring::index.adoc[openapi-processor-spring] documentations. Most of it is valid for the micronaut processor. Just replace the Spring Boot annotation with the Micronaut annotations.
 
