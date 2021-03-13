@@ -21,7 +21,7 @@ It supports an approach where you explicitly define and document your Service AP
 The advantages are:
 
 * you have a single place to maintain the api which makes it easier to create a consistent api and keep the overview.
-* it is easy to document in plain text. You can use markdown in the OpenAPI `description`properties.
+* it is easy to document in plain text. You can use markdown in the OpenAPI `description` properties.
 
 The processor generates java interfaces based on the endpoint description of the API and simple POJO classes for parameter or response objects defined in the API. The processor adds all the required micronaut & jackson annotations to the interface and all that is left to *you* is the implementation of the generated interfaces in any way you like.
 
@@ -31,5 +31,4 @@ The target programming language is Java so the generated code is usable from mos
 
 == documentation
 
-openapi-processor-micronaut doesn't have micronaut specific documentation so far. Follow the xref:spring::index.adoc[openapi-processor-spring] documentations. Most of it is valid for the micronaut processor. Just replace the Spring Boot annotation with the Micronaut annotations.
-
+openapi-processor-micronaut doesn't have micronaut specific documentation so far. Follow the xref:spring::index.adoc[openapi-processor-spring] documentation. Most of it is valid for the micronaut processor. Just replace the Spring Boot annotations with the Micronaut annotations.
