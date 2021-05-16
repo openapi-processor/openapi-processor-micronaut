@@ -1,9 +1,9 @@
 /*
- * Copyright © 2020 https://github.com/openapi-processor/openapi-processor-micronaut
+ * Copyright 2020 https://github.com/openapi-processor/openapi-processor-micronaut
  * PDX-License-Identifier: Apache-2.0
  */
 
-package io.openapiprocessor.micronaut.processor
+package io.openapiprocessor.micronaut
 
 import io.openapiprocessor.micronaut.writer.java.HeaderWriterKt
 import spock.lang.Specification

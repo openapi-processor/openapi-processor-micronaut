@@ -3,7 +3,7 @@
  * PDX-License-Identifier: Apache-2.0
  */
 
-package io.openapiprocessor.micronaut.processor
+package io.openapiprocessor.micronaut
 
 import io.openapiprocessor.core.parser.ParserType
 import io.openapiprocessor.test.TestSet
@@ -11,14 +11,21 @@ import io.openapiprocessor.test.TestSetRunner
 import spock.lang.TempDir
 import spock.lang.Unroll
 
-//@Ignore
-class ProcessorPendingTest extends EndToEndBase {
+/**
+ * run integration tests.
+ */
+class ProcessorEndToEndTest extends EndToEndBase {
 
     static Collection<TestSet> sources () {
-        return [
-            new TestSet(name: 'params-request-body-multipart-mapping', processor: new MicronautProcessor (), parser: ParserType.SWAGGER),
-            new TestSet(name: 'params-request-body-multipart-mapping', processor: new MicronautProcessor (), parser: ParserType.OPENAPI4J),
-        ]
+        def swagger = TestSets.ALL.collect {
+           new TestSet (name: it, processor: new MicronautProcessor (), parser: ParserType.SWAGGER)
+        }
+
+        def openapi4j = TestSets.ALL.collect {
+           new TestSet (name: it, processor: new MicronautProcessor (), parser: ParserType.OPENAPI4J)
+        }
+
+        swagger + openapi4j
     }
 
     @TempDir

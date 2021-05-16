@@ -3,7 +3,7 @@
  * PDX-License-Identifier: Apache-2.0
  */
 
-package com.github.hauner.openapi.micronaut.writer.java
+package io.openapiprocessor.micronaut.writer.java
 
 import io.openapiprocessor.core.model.RequestBody
 import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
@@ -15,8 +15,7 @@ import io.openapiprocessor.core.model.parameters.CookieParameter
 import io.openapiprocessor.core.model.parameters.HeaderParameter
 import io.openapiprocessor.core.model.parameters.PathParameter
 import io.openapiprocessor.micronaut.model.parameters.QueryParameter
-import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
-import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
+import io.openapiprocessor.micronaut.MicronautFrameworkAnnotations
 import spock.lang.Specification
 import spock.lang.Unroll
 

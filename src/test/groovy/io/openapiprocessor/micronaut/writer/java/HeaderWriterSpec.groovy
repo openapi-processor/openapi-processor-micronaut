@@ -3,10 +3,8 @@
  * PDX-License-Identifier: Apache-2.0
  */
 
-package com.github.hauner.openapi.micronaut.writer.java
+package io.openapiprocessor.micronaut.writer.java
 
-import io.openapiprocessor.micronaut.writer.java.HeaderWriter
-import io.openapiprocessor.micronaut.writer.java.HeaderWriterKt
 import spock.lang.Specification
 
 class HeaderWriterSpec extends Specification {

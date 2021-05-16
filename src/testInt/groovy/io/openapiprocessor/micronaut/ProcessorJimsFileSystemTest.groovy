@@ -3,38 +3,34 @@
  * PDX-License-Identifier: Apache-2.0
  */
 
-package io.openapiprocessor.micronaut.processor
+package io.openapiprocessor.micronaut
 
+import com.google.common.jimfs.Configuration
+import com.google.common.jimfs.Jimfs
 import io.openapiprocessor.core.parser.ParserType
 import io.openapiprocessor.test.TestSet
 import io.openapiprocessor.test.TestSetRunner
-import spock.lang.TempDir
 import spock.lang.Unroll
 
+
 /**
- * run integration tests.
+ * run integration tests with Jimfs.
  */
-class ProcessorEndToEndTest extends EndToEndBase {
+class ProcessorJimsFileSystemTest extends EndToEndBase {
 
     static Collection<TestSet> sources () {
-        def swagger = TestSets.ALL.collect {
-           new TestSet (name: it, processor: new MicronautProcessor (), parser: ParserType.SWAGGER)
-        }
+        // the swagger parser does not work with a custom FileSystem so we just run the test with
+        // openapi4j
 
-        def openapi4j = TestSets.ALL.collect {
+        TestSets.ALL.collect {
            new TestSet (name: it, processor: new MicronautProcessor (), parser: ParserType.OPENAPI4J)
         }
-
-        swagger + openapi4j
     }
 
-    @TempDir
-    public File folder
-
     @Unroll
-    void "native - #testSet"() {
+    void "jimfs - #testSet"() {
         def runner = new TestSetRunner (testSet)
-        def success = runner.runOnNativeFileSystem (folder)
+        def success = runner.runOnCustomFileSystem (Jimfs.newFileSystem (Configuration.unix ()))
 
         expect:
         assert success: "** found differences! **"
