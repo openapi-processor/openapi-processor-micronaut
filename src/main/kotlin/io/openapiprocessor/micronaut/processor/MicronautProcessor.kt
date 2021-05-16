@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory
 /**
  *  Entry point of openapi-processor-micronaut.
  */
-class MicronautProcessor: OpenApiProcessor {
+class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiProcessor {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
 
     override fun getName(): String {
