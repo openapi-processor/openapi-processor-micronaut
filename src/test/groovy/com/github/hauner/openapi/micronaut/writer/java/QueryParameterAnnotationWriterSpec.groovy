@@ -5,6 +5,7 @@
 
 package com.github.hauner.openapi.micronaut.writer.java
 
+import io.openapiprocessor.core.model.datatypes.DataTypeName
 import io.openapiprocessor.core.model.datatypes.LongDataType
 import io.openapiprocessor.core.model.datatypes.ObjectDataType
 import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
@@ -72,7 +73,7 @@ class QueryParameterAnnotationWriterSpec extends Specification {
         def param = new QueryParameter(
             'foo',
             new ObjectDataType (
-                'Foo', '', [
+                new DataTypeName('Foo', 'Foo'), '', [
                     foo1: new StringDataType (),
                     foo2: new StringDataType ()
                 ], null, false, null

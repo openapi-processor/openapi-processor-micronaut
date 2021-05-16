@@ -7,6 +7,7 @@ package com.github.hauner.openapi.micronaut.writer.java
 
 import io.openapiprocessor.core.model.RequestBody
 import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
+import io.openapiprocessor.core.model.datatypes.DataTypeName
 import io.openapiprocessor.core.model.datatypes.LongDataType
 import io.openapiprocessor.core.model.datatypes.ObjectDataType
 import io.openapiprocessor.core.model.datatypes.StringDataType
@@ -65,7 +66,7 @@ class ParameterAnnotationWriterSpec extends Specification {
     void "writes request body parameter" () {
         def body = new RequestBody (
             'body', 'application/json',
-            new ObjectDataType ('FooRequestBody', '',
+            new ObjectDataType (new DataTypeName('FooRequestBody', 'FooRequestBody'), '',
                 ['foo': new StringDataType ()], null, false, null),
             true, false)
 
