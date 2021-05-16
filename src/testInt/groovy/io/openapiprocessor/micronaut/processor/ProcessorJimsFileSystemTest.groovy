@@ -8,7 +8,7 @@ package io.openapiprocessor.micronaut.processor
 import com.google.common.jimfs.Configuration
 import com.google.common.jimfs.Jimfs
 import io.openapiprocessor.core.parser.ParserType
-import com.github.hauner.openapi.test.TestSet
+import io.openapiprocessor.test.TestSet
 import io.openapiprocessor.test.TestSetRunner
 import spock.lang.Unroll
 

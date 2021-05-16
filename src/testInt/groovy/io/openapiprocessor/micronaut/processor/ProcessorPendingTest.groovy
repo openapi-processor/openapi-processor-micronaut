@@ -6,7 +6,7 @@
 package io.openapiprocessor.micronaut.processor
 
 import io.openapiprocessor.core.parser.ParserType
-import com.github.hauner.openapi.test.TestSet
+import io.openapiprocessor.test.TestSet
 import io.openapiprocessor.test.TestSetRunner
 import spock.lang.TempDir
 import spock.lang.Unroll
