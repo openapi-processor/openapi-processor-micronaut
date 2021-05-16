@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 https://github.com/openapi-processor/openapi-processor-micronaut
+ * Copyright 2020 https://github.com/openapi-processor/openapi-processor-micronaut
  * PDX-License-Identifier: Apache-2.0
  */
 
