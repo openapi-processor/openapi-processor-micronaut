@@ -8,11 +8,8 @@ package io.openapiprocessor.micronaut.processor
 import io.openapiprocessor.api.OpenApiProcessor
 import io.openapiprocessor.core.converter.ApiConverter
 import io.openapiprocessor.core.converter.ApiOptions
+import io.openapiprocessor.core.converter.OptionsConverter
 import io.openapiprocessor.core.parser.Parser
-import io.openapiprocessor.core.processor.MappingConverter
-import io.openapiprocessor.core.processor.MappingReader
-import io.openapiprocessor.core.processor.mapping.MappingVersion
-import io.openapiprocessor.core.processor.mapping.v2.Mapping as MappingV2
 import io.openapiprocessor.core.writer.java.*
 import io.openapiprocessor.micronaut.writer.java.HeaderWriter
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
@@ -79,33 +76,8 @@ class MicronautProcessor: OpenApiProcessor {
     }
 
     private fun convertOptions(processorOptions: Map<String, *>): ApiOptions {
-        val reader = MappingReader()
-        val converter = MappingConverter()
-        var mapping: MappingVersion? = null
-
-        if (processorOptions.containsKey("mapping")) {
-            mapping = reader.read(processorOptions["mapping"].toString())
-        }
-
-        val options = ApiOptions()
-        options.targetDir = processorOptions["targetDir"].toString()
-
-        if (mapping != null) {
-            if (mapping is MappingV2) {
-                options.packageName = mapping.options.packageName
-                options.beanValidation = mapping.options.beanValidation
-                options.javadoc = mapping.options.javadoc
-            }
-
-            if (options.packageName.contains("io.openapiprocessor.")) {
-                log.warn("is 'options:package-name' set in mapping? found: '{}'.", options.packageName)
-            }
-
-            options.typeMappings = converter.convert(mapping)
-        } else {
-            log.warn("missing 'mapping.yaml' configuration!")
-        }
-
+        val options = OptionsConverter().convertOptions (processorOptions as Map<String, Any>)
+        options.validate ()
         return options
     }
 
