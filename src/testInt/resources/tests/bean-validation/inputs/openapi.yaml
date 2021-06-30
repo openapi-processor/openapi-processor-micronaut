@@ -1,0 +1,26 @@
+openapi: 3.0.2
+info:
+  title: test validation on a request body
+  version: 1.0.0
+
+paths:
+  /endpoint:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointBody'
+      responses:
+        '204':
+          description: empty
+
+components:
+  schemas:
+    EndpointBody:
+      type: object
+      required: [ flag ]
+      properties:
+        flag:
+          type: boolean
