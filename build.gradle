@@ -34,7 +34,7 @@ java {
 
 ext {
     processorApiVersion = '2021.1'
-    processorCoreVersion = '2021.4'
+    processorCoreVersion = '2021.5-SNAPSHOT'
     processorTestVersion = '2021.2'
     groovyVersion = '3.0.8'
 
