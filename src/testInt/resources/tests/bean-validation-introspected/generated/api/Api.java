@@ -8,7 +8,7 @@
 
 package generated.api;
 
-import generated.model.EndpointBody;
+import generated.model.Foo;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Post;
 import javax.validation.Valid;
@@ -18,6 +18,6 @@ public interface Api {
     @Post(
             uri = "/endpoint",
             consumes = {"application/json"})
-    void postEndpoint(@Valid @Body EndpointBody body);
+    void postEndpoint(@Valid @Body Foo body);
 
 }

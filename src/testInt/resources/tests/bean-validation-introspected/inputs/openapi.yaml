@@ -11,14 +11,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EndpointBody'
+              $ref: '#/components/schemas/Foo'
       responses:
         '204':
           description: empty
 
 components:
   schemas:
-    EndpointBody:
+    Foo:
       type: object
       required: [ flag ]
       properties:

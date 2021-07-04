@@ -8,7 +8,7 @@ package io.openapiprocessor.micronaut
 class TestSets {
 
     static List<String> ALL = [
-        'bean-validation',
+        'bean-validation-introspected',
         'endpoint-http-mapping',
         'params-complex-data-types',
         'params-pageable-mapping',
