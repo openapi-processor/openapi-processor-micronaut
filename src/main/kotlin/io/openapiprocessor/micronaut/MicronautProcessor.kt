@@ -11,6 +11,7 @@ import io.openapiprocessor.core.converter.ApiOptions
 import io.openapiprocessor.core.converter.OptionsConverter
 import io.openapiprocessor.core.parser.Parser
 import io.openapiprocessor.core.writer.java.*
+import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.HeaderWriter
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
@@ -43,7 +44,7 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
             val api = cv.convert(openapi)
 
             val headerWriter = HeaderWriter()
-            val beanValidationFactory = BeanValidationFactory()
+            val beanValidations = BeanValidations()
 
             val writer = ApiWriter(
                 options,
@@ -54,16 +55,16 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
                         options,
                         MappingAnnotationWriter(),
                         ParameterAnnotationWriter(annotations),
-                        beanValidationFactory
+                        beanValidations
                     ),
                     annotations,
-                    beanValidationFactory,
+                    beanValidations,
                     DefaultImportFilter()
                 ),
                 DataTypeWriter(
                     options,
                     headerWriter,
-                    beanValidationFactory),
+                    beanValidations),
                 StringEnumWriter (headerWriter),
                 true
             )

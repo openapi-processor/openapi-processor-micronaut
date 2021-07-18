@@ -6,12 +6,14 @@
 package io.openapiprocessor.micronaut
 
 import io.openapiprocessor.core.parser.ParserType
+import io.openapiprocessor.test.FileSupport
 import io.openapiprocessor.test.TestSet
 import io.openapiprocessor.test.TestSetRunner
+import spock.lang.Ignore
 import spock.lang.TempDir
 import spock.lang.Unroll
 
-//@Ignore
+@Ignore
 class ProcessorPendingTest extends EndToEndBase {
 
     static Collection<TestSet> sources () {
@@ -26,7 +28,7 @@ class ProcessorPendingTest extends EndToEndBase {
 
     @Unroll
     void "native - #testSet"() {
-        def runner = new TestSetRunner (testSet)
+        def runner = new TestSetRunner (testSet, new FileSupport(getClass ()))
         def success = runner.runOnNativeFileSystem (folder)
 
         expect:
