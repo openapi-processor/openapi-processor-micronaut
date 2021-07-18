@@ -9,6 +9,7 @@ import io.openapiprocessor.core.parser.ParserType
 import io.openapiprocessor.test.FileSupport
 import io.openapiprocessor.test.TestSet
 import io.openapiprocessor.test.TestSetRunner
+import spock.lang.Ignore
 import spock.lang.TempDir
 import spock.lang.Unroll
 
