@@ -12,12 +12,13 @@ import generated.model.Foo;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Post;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 public interface Api {
 
     @Post(
             uri = "/endpoint",
             consumes = {"application/json"})
-    void postEndpoint(@Valid @Body Foo body);
+    void postEndpoint(@Body @Valid @NotNull Foo body);
 
 }
