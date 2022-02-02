@@ -65,8 +65,7 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
                     options,
                     headerWriter,
                     beanValidations),
-                StringEnumWriter (headerWriter),
-                true
+                StringEnumWriter (headerWriter)
             )
 
             writer.write (api)
