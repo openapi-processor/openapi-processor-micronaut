@@ -6,7 +6,7 @@ include::partial$links.adoc[]
 //
 // content
 //
-image:openapi-processor-micronaut$$@$$1280x200.png[openapi-processor-micronaut]
+image:openapi-processor-micronaut-at-1280x200.png[openapi-processor-micronaut]
 
 // badges
 link:{oapm-ci}[image:{badge-ci}[]]
