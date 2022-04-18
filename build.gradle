@@ -34,7 +34,7 @@ java {
 
 ext {
     processorApiVersion = '2021.1'
-    processorCoreVersion = '2022.2'
+    processorCoreVersion = '2022.4.1'
     processorTestVersion = '2022.1'
 
     publishUser = getBuildProperty ('PUBLISH_USER')
