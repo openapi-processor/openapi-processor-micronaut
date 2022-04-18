@@ -45,6 +45,7 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
 
             val headerWriter = HeaderWriter()
             val beanValidations = BeanValidations()
+            val javaDocWriter = JavaDocWriter()
 
             val writer = ApiWriter(
                 options,
@@ -55,7 +56,8 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
                         options,
                         MappingAnnotationWriter(),
                         ParameterAnnotationWriter(annotations),
-                        beanValidations
+                        beanValidations,
+                        javaDocWriter
                     ),
                     annotations,
                     beanValidations,
@@ -65,7 +67,12 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
                     options,
                     headerWriter,
                     beanValidations),
-                StringEnumWriter (headerWriter)
+                StringEnumWriter (headerWriter),
+                InterfaceDataTypeWriter(
+                    options,
+                    headerWriter,
+                    javaDocWriter
+                )
             )
 
             writer.write (api)
