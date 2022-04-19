@@ -26,6 +26,6 @@ to use snapshot versions add `https://oss.sonatype.org/content/repositories/snap
 [workflow-ci]: https://github.com/openapi-processor/openapi-processor-micronaut/actions?query=workflow%3Abuild
 [sonar-coverage]: https://sonarcloud.io/api/project_badges/measure?project=openapi-processor_openapi-processor-micronaut&metric=coverage
 [sonar]: https://sonarcloud.io/dashboard?id=openapi-processor_openapi-processor-micronaut
-[oap-docs]: https://docs.openapiprocessor.io/micronaut
+[oap-docs]: https://docs.openapiprocessor.io
 [openapi]: https://www.openapis.org/
 [micronaut]: https://micronaut.io
