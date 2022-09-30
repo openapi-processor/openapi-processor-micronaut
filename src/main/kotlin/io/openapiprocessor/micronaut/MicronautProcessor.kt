@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 https://github.com/openapi-processor/openapi-processor-micronaut
+ * Copyright 2020 https://github.com/openapi-processor/openapi-processor-micronaut
  * PDX-License-Identifier: Apache-2.0
  */
 
@@ -12,17 +12,19 @@ import io.openapiprocessor.core.converter.OptionsConverter
 import io.openapiprocessor.core.parser.Parser
 import io.openapiprocessor.core.writer.java.*
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
-import io.openapiprocessor.micronaut.writer.java.HeaderWriter
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
+import io.openapiprocessor.spring.Version
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.time.OffsetDateTime
 
 /**
  *  Entry point of openapi-processor-micronaut.
  */
 class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiProcessor {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
+    private var testMode = false
 
     override fun getName(): String {
         return "micronaut"
@@ -43,15 +45,17 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
             val cv = ApiConverter(options, framework)
             val api = cv.convert(openapi)
 
-            val headerWriter = HeaderWriter()
+            val generatedInfo = createGeneratedInfo(options)
+            val generatedWriter = GeneratedWriterImpl(generatedInfo, options)
             val beanValidations = BeanValidations()
             val javaDocWriter = JavaDocWriter()
 
             val writer = ApiWriter(
                 options,
+                generatedWriter,
                 InterfaceWriter(
                     options,
-                    headerWriter,
+                    generatedWriter,
                     MethodWriter(
                         options,
                         MappingAnnotationWriter(),
@@ -65,12 +69,12 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
                 ),
                 DataTypeWriter(
                     options,
-                    headerWriter,
+                    generatedWriter,
                     beanValidations),
-                StringEnumWriter (headerWriter),
+                StringEnumWriter (generatedWriter),
                 InterfaceDataTypeWriter(
                     options,
-                    headerWriter,
+                    generatedWriter,
                     javaDocWriter
                 )
             )
@@ -80,6 +84,29 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
             log.error("processing failed!", e)
             throw e
         }
+    }
+
+    private fun createGeneratedInfo(options: ApiOptions): GeneratedInfo {
+        var version = Version.version
+        var date: String? = OffsetDateTime.now().toString()
+
+        if (!options.generatedDate)
+            date = null
+
+        if (testMode) {
+            version = "test"
+            date = null
+        }
+
+        return GeneratedInfo(
+            "openapi-processor-micronaut",
+            version,
+            date
+        )
+    }
+
+    fun enableTestMode () {
+        testMode = true
     }
 
     private fun convertOptions(processorOptions: Map<String, *>): ApiOptions {
