@@ -34,8 +34,6 @@ class ProcessorPendingSpec: StringSpec({
 })
 
 private fun sources(): Collection<TestSet> {
-    setTestHeader()
-
     return listOf(
         testSet("bean-validation-introspected", INTERNAL, API_30),
         testSet("bean-validation-introspected", INTERNAL, API_31)
