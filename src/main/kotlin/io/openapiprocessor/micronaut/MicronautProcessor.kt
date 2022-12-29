@@ -47,7 +47,7 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
 
             val generatedInfo = createGeneratedInfo(options)
             val generatedWriter = GeneratedWriterImpl(generatedInfo, options)
-            val beanValidations = BeanValidationFactory(getValidationFormat(options))
+            val beanValidations = BeanValidations(getValidationFormat(options))
             val javaDocWriter = JavaDocWriter()
 
             val writer = ApiWriter(
