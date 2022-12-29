@@ -28,7 +28,8 @@ class CookieParameterAnnotationWriterSpec extends Specification {
 
     void "write simple (optional, with default value) cookie parameter" () {
         def param = new CookieParameter('foo',
-            new StringDataType(new DataTypeConstraints(defaultValue: 'bar'),
+            new StringDataType('string',
+                new DataTypeConstraints(defaultValue: 'bar'),
                 false, null),
             false, false, null)
 
