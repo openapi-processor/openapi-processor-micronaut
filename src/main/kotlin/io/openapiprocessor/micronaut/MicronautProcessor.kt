@@ -47,7 +47,7 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
 
             val generatedInfo = createGeneratedInfo(options)
             val generatedWriter = GeneratedWriterImpl(generatedInfo, options)
-            val beanValidations = BeanValidations()
+            val beanValidations = BeanValidationFactory(getValidationFormat(options))
             val javaDocWriter = JavaDocWriter()
 
             val writer = ApiWriter(
@@ -115,4 +115,11 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
         return options
     }
 
+    private fun getValidationFormat(options: ApiOptions): BeanValidationFormat {
+        val format = options.beanValidationFormat
+        return if (format != null)
+            BeanValidationFormat.valueOf(format.uppercase())
+        else
+            BeanValidationFormat.JAVAX
+    }
 }
