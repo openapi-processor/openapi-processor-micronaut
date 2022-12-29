@@ -67,7 +67,7 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
                     beanValidations,
                     DefaultImportFilter()
                 ),
-                DataTypeWriter(
+                DataTypeWriterPojo(
                     options,
                     generatedWriter,
                     beanValidations),
