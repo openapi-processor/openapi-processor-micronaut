@@ -55,6 +55,8 @@ jobs:
         path: build/reports
 
   publish:
+    if: ${{ github.actor == 'hauner' }}
+
     needs: [test]
     name: publish snapshot
 
