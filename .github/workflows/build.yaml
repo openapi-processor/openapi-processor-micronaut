@@ -48,7 +48,7 @@ jobs:
         ./gradlew --stop
 
     - name: archive test results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: test results
@@ -93,7 +93,7 @@ jobs:
         ./gradlew --stop
 
     - name: archive test results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: publish results
@@ -142,7 +142,7 @@ jobs:
         ./gradlew --stop
 
     - name: sonarqube results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: sonarqube results
