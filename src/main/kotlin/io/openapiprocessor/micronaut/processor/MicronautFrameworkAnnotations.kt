@@ -21,7 +21,7 @@ class MicronautFrameworkAnnotations: FrameworkAnnotations {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
 
     override fun getAnnotation(httpMethod: HttpMethod): FrameworkAnnotation {
-        return MAPPING_ANNOTATIONS[httpMethod]!!
+        return MAPPING_ANNOTATIONS.getValue(httpMethod)
     }
 
     override fun getAnnotation(parameter: Parameter): FrameworkAnnotation {
@@ -40,7 +40,7 @@ class MicronautFrameworkAnnotations: FrameworkAnnotations {
     }
 
     private fun getAnnotation(key: String): FrameworkAnnotation {
-        return PARAMETER_ANNOTATIONS[key]!!
+        return PARAMETER_ANNOTATIONS.getValue(key)
     }
 
 }
