@@ -14,7 +14,7 @@ import io.openapiprocessor.core.writer.java.*
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
-import io.openapiprocessor.spring.Version
+import io.openapiprocessor.micronaut.Version
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.time.OffsetDateTime
