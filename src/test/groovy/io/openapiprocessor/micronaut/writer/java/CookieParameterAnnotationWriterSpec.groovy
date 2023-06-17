@@ -8,7 +8,7 @@ package io.openapiprocessor.micronaut.writer.java
 import io.openapiprocessor.core.model.parameters.CookieParameter
 import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
 import io.openapiprocessor.core.model.datatypes.StringDataType
-import io.openapiprocessor.micronaut.MicronautFrameworkAnnotations
+import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
 import spock.lang.Specification
 
 class CookieParameterAnnotationWriterSpec extends Specification {

@@ -15,7 +15,7 @@ import io.openapiprocessor.core.model.parameters.CookieParameter
 import io.openapiprocessor.core.model.parameters.HeaderParameter
 import io.openapiprocessor.core.model.parameters.PathParameter
 import io.openapiprocessor.micronaut.model.parameters.QueryParameter
-import io.openapiprocessor.micronaut.MicronautFrameworkAnnotations
+import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
 import spock.lang.Specification
 import spock.lang.Unroll
 

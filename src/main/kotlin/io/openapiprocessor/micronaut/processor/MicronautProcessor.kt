@@ -3,13 +3,13 @@
  * PDX-License-Identifier: Apache-2.0
  */
 
-package io.openapiprocessor.micronaut
+package io.openapiprocessor.micronaut.processor
 
-import io.openapiprocessor.api.OpenApiProcessor
 import io.openapiprocessor.core.converter.ApiConverter
 import io.openapiprocessor.core.converter.ApiOptions
 import io.openapiprocessor.core.converter.OptionsConverter
 import io.openapiprocessor.core.parser.Parser
+import io.openapiprocessor.core.writer.WriterFactory
 import io.openapiprocessor.core.writer.java.*
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
@@ -22,15 +22,11 @@ import java.time.OffsetDateTime
 /**
  *  Entry point of openapi-processor-micronaut.
  */
-class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiProcessor {
+class MicronautProcessor(private val writerFactory: WriterFactory) {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
     private var testMode = false
 
-    override fun getName(): String {
-        return "micronaut"
-    }
-
-    override fun run(processorOptions: MutableMap<String, *>) {
+    fun run(processorOptions: MutableMap<String, *>) {
         try {
             val parser = Parser()
             val openapi = parser.parse(processorOptions)
@@ -76,13 +72,15 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
                     options,
                     generatedWriter,
                     javaDocWriter
-                )
+                ),
+                GoogleFormatter(),
+                writerFactory
             )
 
             writer.write (api)
-        } catch (e: Exception) {
-            log.error("processing failed!", e)
-            throw e
+        } catch (ex: Exception) {
+            log.error("processing failed!", ex)
+            throw ProcessingException(ex)
         }
     }
 
@@ -109,6 +107,7 @@ class MicronautProcessor: OpenApiProcessor, io.openapiprocessor.api.v1.OpenApiPr
         testMode = true
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun convertOptions(processorOptions: Map<String, *>): ApiOptions {
         val options = OptionsConverter().convertOptions (processorOptions as Map<String, Any>)
         options.validate ()

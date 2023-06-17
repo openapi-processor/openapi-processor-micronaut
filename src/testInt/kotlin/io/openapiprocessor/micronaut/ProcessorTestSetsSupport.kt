@@ -6,6 +6,8 @@
 package io.openapiprocessor.micronaut
 
 import io.openapiprocessor.core.parser.ParserType
+import io.openapiprocessor.micronaut.processor.MicronautProcessor
+import io.openapiprocessor.micronaut.processor.MicronautServiceV2
 import io.openapiprocessor.test.TestSet
 
 
@@ -21,8 +23,7 @@ fun testSet(
     inputs: String = "inputs.yaml",
     generated: String = "generated.yaml"): TestSet {
 
-    val processor = MicronautProcessor()
-    processor.enableTestMode()
+    val processor = MicronautServiceV2(testMode = true)
 
     val testSet = TestSet()
     testSet.name = name
@@ -30,6 +31,6 @@ fun testSet(
     testSet.parser = parser.name
     testSet.openapi = openapi
     testSet.inputs = inputs
-    testSet.generated = generated
+    testSet.outputs = generated
     return testSet
 }

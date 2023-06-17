@@ -11,7 +11,7 @@ import io.openapiprocessor.core.model.datatypes.ObjectDataType
 import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
 import io.openapiprocessor.core.model.datatypes.StringDataType
 import io.openapiprocessor.micronaut.model.parameters.QueryParameter
-import io.openapiprocessor.micronaut.MicronautFrameworkAnnotations
+import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
 import spock.lang.Specification
 
 class QueryParameterAnnotationWriterSpec extends Specification {
