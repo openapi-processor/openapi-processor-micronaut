@@ -8,6 +8,7 @@ package io.openapiprocessor.micronaut.writer.java
 import io.openapiprocessor.core.writer.java.MappingAnnotationWriter as CoreMappingAnnotationWriter
 import io.openapiprocessor.core.model.Endpoint
 import io.openapiprocessor.core.model.EndpointResponse
+import io.openapiprocessor.core.support.capitalizeFirstChar
 import java.io.Writer
 
 /**
@@ -52,7 +53,7 @@ class MappingAnnotationWriter: CoreMappingAnnotationWriter {
 
 
     private fun getMappingAnnotation(endpoint: Endpoint): String {
-        return "@${endpoint.method.method.capitalize ()}"
+        return "@${endpoint.method.method.capitalizeFirstChar()}"
     }
 
     private fun quote(content: String): String {
