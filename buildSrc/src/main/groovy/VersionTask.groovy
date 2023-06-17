@@ -28,7 +28,7 @@ class VersionTask extends DefaultTask {
      */
     @TaskAction
     void generateVersion () {
-        def path = Path.of (targetDir, "version", "io", "openapiprocessor", "spring")
+        def path = Path.of (targetDir, "version", "io", "openapiprocessor", "micronaut")
         Files.createDirectories(path)
 
         def target = path.resolve ("Version.java")
@@ -40,7 +40,7 @@ class VersionTask extends DefaultTask {
  * ${Instant.now ().toString ()}
  */
 
-package io.openapiprocessor.spring;
+package io.openapiprocessor.micronaut;
  
 public class Version {
     public static final String version = "${version}"; 

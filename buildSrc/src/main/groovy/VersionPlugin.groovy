@@ -14,7 +14,7 @@ import org.gradle.api.Project
  * }</pre>
  *
  *
- * The io/openapiprocessor/spring/Version.java file is generated to:
+ * The io/openapiprocessor/micronaut/Version.java file is generated to:
  *
  * $(project.buildDir}/main/java
  *
