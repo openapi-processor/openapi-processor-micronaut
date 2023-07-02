@@ -8,10 +8,7 @@ import io.micronaut.http.annotation.Post;
 @Generated(value = "openapi-processor-micronaut", version = "test")
 public interface Api {
 
-    @Post(
-            uri = "/book",
-            consumes = {"application/json"},
-            produces = {"application/json"})
+    @Post(uri = "/book", consumes = {"application/json"}, produces = {"application/json"})
     Book postBook(@Body Book body);
 
 }

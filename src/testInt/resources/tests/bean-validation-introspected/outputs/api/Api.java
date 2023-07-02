@@ -10,9 +10,7 @@ import javax.validation.constraints.NotNull;
 @Generated(value = "openapi-processor-micronaut", version = "test")
 public interface Api {
 
-    @Post(
-            uri = "/endpoint",
-            consumes = {"application/json"})
+    @Post(uri = "/endpoint", consumes = {"application/json"})
     void postEndpoint(@Body @Valid @NotNull Foo body);
 
 }

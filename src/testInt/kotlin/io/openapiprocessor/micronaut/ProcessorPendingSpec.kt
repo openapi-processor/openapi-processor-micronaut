@@ -9,9 +9,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.openapiprocessor.core.parser.ParserType.INTERNAL
-import io.openapiprocessor.test.FileSupport
-import io.openapiprocessor.test.TestSet
-import io.openapiprocessor.test.TestSetRunner
+import io.openapiprocessor.test.*
 
 /**
  * helper to run selected integration tests.
@@ -35,7 +33,7 @@ class ProcessorPendingSpec: StringSpec({
 
 private fun sources(): Collection<TestSet> {
     return listOf(
-        testSet("bean-validation-introspected", INTERNAL, API_30),
-        testSet("bean-validation-introspected", INTERNAL, API_31)
+        testSet("bean-validation-introspected", INTERNAL, API_30, model = "default", outputs = "outputs.yaml", expected = "outputs"),
+        testSet("bean-validation-introspected", INTERNAL, API_31, model = "default", outputs = "outputs.yaml", expected = "outputs")
     )
 }

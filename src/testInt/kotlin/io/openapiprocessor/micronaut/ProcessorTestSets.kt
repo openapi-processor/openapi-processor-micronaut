@@ -5,26 +5,26 @@
 
 package io.openapiprocessor.micronaut
 
-data class TestSet(val name: String, val openapi: String)
+import io.openapiprocessor.test.*
 
-val ALL_30: List<TestSet> = listOf(
-    TestSet("bean-validation-introspected", API_30),
-    TestSet("endpoint-http-mapping", API_30),
-    TestSet("params-complex-data-types", API_30),
-    TestSet("params-pageable-mapping", API_30),
-    TestSet("params-path-simple-data-types", API_30),
-    TestSet("params-request-body", API_30),
-    TestSet("params-request-body-multipart-mapping", API_30),
-    TestSet("params-simple-data-types", API_30)
+val ALL_30: List<TestParams> = listOf(
+    test30_DR("bean-validation-introspected"),
+    test30_D_("endpoint-http-mapping"),
+    test30_DR("params-complex-data-types"),
+    test30_D_("params-pageable-mapping"),
+    test30_D_("params-path-simple-data-types"),
+    test30_DR("params-request-body"),
+    test30_DR("params-request-body-multipart-mapping"),
+    test30_D_("params-simple-data-types")
 )
 
-val ALL_31: List<TestSet> = listOf(
-    TestSet("bean-validation-introspected", API_31),
-    TestSet("endpoint-http-mapping", API_31),
-    TestSet("params-complex-data-types", API_31),
-    TestSet("params-pageable-mapping", API_31),
-    TestSet("params-path-simple-data-types", API_31),
-    TestSet("params-request-body", API_31),
-    TestSet("params-request-body-multipart-mapping", API_31),
-    TestSet("params-simple-data-types", API_31)
+val ALL_31: List<TestParams> = listOf(
+    test31_DR("bean-validation-introspected"),
+    test31_D_("endpoint-http-mapping"),
+    test31_DR("params-complex-data-types"),
+    test31_D_("params-pageable-mapping"),
+    test31_D_("params-path-simple-data-types"),
+    test31_DR("params-request-body"),
+    test31_DR("params-request-body-multipart-mapping"),
+    test31_D_("params-simple-data-types")
 )
