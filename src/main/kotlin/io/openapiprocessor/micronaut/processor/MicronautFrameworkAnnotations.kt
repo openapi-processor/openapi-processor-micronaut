@@ -7,7 +7,7 @@ package io.openapiprocessor.micronaut.processor
 
 import io.openapiprocessor.core.framework.FrameworkAnnotation
 import io.openapiprocessor.core.framework.FrameworkAnnotations
-import io.openapiprocessor.core.model.HttpMethod
+import io.openapiprocessor.core.parser.HttpMethod
 import io.openapiprocessor.core.model.RequestBody
 import io.openapiprocessor.core.model.parameters.*
 import io.openapiprocessor.micronaut.model.parameters.QueryParameter
