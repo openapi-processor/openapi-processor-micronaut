@@ -78,7 +78,7 @@ compileTestGroovy {
 
 kotlin {
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        jvmToolchain(libs.versions.build.jdk.get() as Integer)
     }
 }
 
