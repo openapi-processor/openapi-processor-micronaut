@@ -5,8 +5,8 @@
 
 package io.openapiprocessor.micronaut.processor
 
-import io.openapiprocessor.core.framework.FrameworkAnnotation
 import io.openapiprocessor.core.framework.FrameworkAnnotations
+import io.openapiprocessor.core.model.Annotation
 import io.openapiprocessor.core.parser.HttpMethod
 import io.openapiprocessor.core.model.RequestBody
 import io.openapiprocessor.core.model.parameters.*
@@ -20,11 +20,11 @@ import org.slf4j.LoggerFactory
 class MicronautFrameworkAnnotations: FrameworkAnnotations {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
 
-    override fun getAnnotation(httpMethod: HttpMethod): FrameworkAnnotation {
+    override fun getAnnotation(httpMethod: HttpMethod): Annotation {
         return MAPPING_ANNOTATIONS.getValue(httpMethod)
     }
 
-    override fun getAnnotation(parameter: Parameter): FrameworkAnnotation {
+    override fun getAnnotation(parameter: Parameter): Annotation {
         return when(parameter) {
             is RequestBody -> getAnnotation("body")
             is PathParameter -> getAnnotation("path")
@@ -39,32 +39,35 @@ class MicronautFrameworkAnnotations: FrameworkAnnotations {
         }
     }
 
-    private fun getAnnotation(key: String): FrameworkAnnotation {
+    private fun getAnnotation(key: String): Annotation {
         return PARAMETER_ANNOTATIONS.getValue(key)
     }
-
 }
 
-private const val ANNOTATION_PKG = "io.micronaut.http.annotation"
-
 private val MAPPING_ANNOTATIONS = hashMapOf(
-    HttpMethod.DELETE  to FrameworkAnnotation("Delete", ANNOTATION_PKG),
-    HttpMethod.GET     to FrameworkAnnotation("Get", ANNOTATION_PKG),
-    HttpMethod.HEAD    to FrameworkAnnotation("Head", ANNOTATION_PKG),
-    HttpMethod.OPTIONS to FrameworkAnnotation("Options", ANNOTATION_PKG),
-    HttpMethod.PATCH   to FrameworkAnnotation("Patch", ANNOTATION_PKG),
-    HttpMethod.POST    to FrameworkAnnotation("Post", ANNOTATION_PKG),
-    HttpMethod.PUT     to FrameworkAnnotation("Put", ANNOTATION_PKG),
-    HttpMethod.TRACE   to FrameworkAnnotation("Trace", ANNOTATION_PKG)
+    HttpMethod.DELETE  to Annotation(getAnnotationName("Delete")),
+    HttpMethod.GET     to Annotation(getAnnotationName("Get")),
+    HttpMethod.HEAD    to Annotation(getAnnotationName("Head")),
+    HttpMethod.OPTIONS to Annotation(getAnnotationName("Options")),
+    HttpMethod.PATCH   to Annotation(getAnnotationName("Patch")),
+    HttpMethod.POST    to Annotation(getAnnotationName("Post")),
+    HttpMethod.PUT     to Annotation(getAnnotationName("Put")),
+    HttpMethod.TRACE   to Annotation(getAnnotationName("Trace"))
 )
 
 private val PARAMETER_ANNOTATIONS = hashMapOf(
-    "query"     to FrameworkAnnotation ("QueryValue", ANNOTATION_PKG),
-    "header"    to FrameworkAnnotation ("Header", ANNOTATION_PKG),
-    "cookie"    to FrameworkAnnotation ("CookieValue", ANNOTATION_PKG),
-    "path"      to FrameworkAnnotation ("PathVariable", ANNOTATION_PKG),
-    "multipart" to FrameworkAnnotation ("Part", ANNOTATION_PKG),
-    "body"      to FrameworkAnnotation ("Body", ANNOTATION_PKG)
+    "query"     to Annotation (getAnnotationName("QueryValue")),
+    "header"    to Annotation (getAnnotationName("Header")),
+    "cookie"    to Annotation (getAnnotationName("CookieValue")),
+    "path"      to Annotation (getAnnotationName("PathVariable")),
+    "multipart" to Annotation (getAnnotationName("Part")),
+    "body"      to Annotation (getAnnotationName("Body"))
 )
 
-private val UNKNOWN_ANNOTATION = FrameworkAnnotation("Unknown", "fix.me")
+private val UNKNOWN_ANNOTATION = Annotation("Unknown")
+
+private const val ANNOTATION_PKG = "io.micronaut.http.annotation"
+
+private fun getAnnotationName(name: String): String {
+    return "${ANNOTATION_PKG}.${name}"
+}

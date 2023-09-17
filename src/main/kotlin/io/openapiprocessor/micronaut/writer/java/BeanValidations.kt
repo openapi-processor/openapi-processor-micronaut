@@ -5,21 +5,15 @@
 
 package io.openapiprocessor.micronaut.writer.java
 
-import io.openapiprocessor.core.framework.FrameworkAnnotation
+import io.openapiprocessor.core.model.Annotation
 import io.openapiprocessor.core.model.datatypes.ModelDataType
 import io.openapiprocessor.core.writer.java.*
-import io.openapiprocessor.core.writer.java.Annotation
 
-class BeanValidations(format: BeanValidationFormat = BeanValidationFormat.JAVAX)
-    : BeanValidationFactory(format) {
+class BeanValidations(format: BeanValidationFormat = BeanValidationFormat.JAVAX): BeanValidationFactory(format) {
 
     override fun validate(dataType: ModelDataType): BeanValidationInfo {
-        return BeanValidationInfoSimple(
-            dataType,
-            listOf(Annotation(INTROSPECTED.fullyQualifiedName)))
+        return BeanValidationInfoSimple(dataType, listOf(INTROSPECTED))
     }
-
 }
 
-private val INTROSPECTED = FrameworkAnnotation(
-    "Introspected", "io.micronaut.core.annotation")
+private val INTROSPECTED = Annotation("io.micronaut.core.annotation.Introspected")
