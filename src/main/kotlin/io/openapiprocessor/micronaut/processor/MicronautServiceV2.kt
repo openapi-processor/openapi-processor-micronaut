@@ -33,7 +33,7 @@ class MicronautServiceV2(
 
     override fun run(processorOptions: MutableMap<String, *>) {
         try {
-            val processor = MicronautProcessor(DefaultWriterFactory())
+            val processor = MicronautProcessor()
             if (testMode) {
                 processor.enableTestMode()
             }

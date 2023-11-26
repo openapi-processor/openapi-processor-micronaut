@@ -9,12 +9,12 @@ import io.openapiprocessor.core.converter.ApiConverter
 import io.openapiprocessor.core.converter.ApiOptions
 import io.openapiprocessor.core.converter.OptionsConverter
 import io.openapiprocessor.core.parser.OpenApiParser
-import io.openapiprocessor.core.writer.WriterFactory
+import io.openapiprocessor.core.writer.DefaultWriterFactory
 import io.openapiprocessor.core.writer.java.*
+import io.openapiprocessor.micronaut.Version
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
-import io.openapiprocessor.micronaut.Version
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.time.OffsetDateTime
@@ -22,7 +22,7 @@ import java.time.OffsetDateTime
 /**
  *  Entry point of openapi-processor-micronaut.
  */
-class MicronautProcessor(private val writerFactory: WriterFactory) {
+class MicronautProcessor {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
     private var testMode = false
 
@@ -41,14 +41,17 @@ class MicronautProcessor(private val writerFactory: WriterFactory) {
             val cv = ApiConverter(options, framework)
             val api = cv.convert(openapi)
 
+            val writerFactory = DefaultWriterFactory(options)
             val generatedInfo = createGeneratedInfo(options)
             val generatedWriter = GeneratedWriterImpl(generatedInfo, options)
-            val beanValidations = BeanValidations(getValidationFormat(options))
+            val validationWriter = ValidationWriter(options)
+            val beanValidations = BeanValidations(options)
             val javaDocWriter = JavaDocWriter()
 
             val writer = ApiWriter(
                 options,
                 generatedWriter,
+                validationWriter,
                 InterfaceWriter(
                     options,
                     generatedWriter,
@@ -77,12 +80,13 @@ class MicronautProcessor(private val writerFactory: WriterFactory) {
                         javaDocWriter
                     )
                 },
-                StringEnumWriter (generatedWriter),
+                StringEnumWriter (options, generatedWriter),
                 InterfaceDataTypeWriter(
                     options,
                     generatedWriter,
                     javaDocWriter
                 ),
+                listOf(),
                 GoogleFormatter(),
                 writerFactory
             )
@@ -122,13 +126,5 @@ class MicronautProcessor(private val writerFactory: WriterFactory) {
         val options = OptionsConverter().convertOptions (processorOptions as Map<String, Any>)
         options.validate ()
         return options
-    }
-
-    private fun getValidationFormat(options: ApiOptions): BeanValidationFormat {
-        val format = options.beanValidationFormat
-        return if (format != null)
-            BeanValidationFormat.valueOf(format.uppercase())
-        else
-            BeanValidationFormat.JAVAX
     }
 }

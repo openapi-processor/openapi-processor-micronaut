@@ -5,11 +5,12 @@
 
 package io.openapiprocessor.micronaut.writer.java
 
+import io.openapiprocessor.core.converter.ApiOptions
 import io.openapiprocessor.core.model.Annotation
 import io.openapiprocessor.core.model.datatypes.ModelDataType
 import io.openapiprocessor.core.writer.java.*
 
-class BeanValidations(format: BeanValidationFormat = BeanValidationFormat.JAVAX): BeanValidationFactory(format) {
+class BeanValidations(options: ApiOptions): BeanValidationFactory(options) {
 
     override fun validate(dataType: ModelDataType): BeanValidationInfo {
         return BeanValidationInfoSimple(dataType, listOf(INTROSPECTED))
