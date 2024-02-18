@@ -4,7 +4,7 @@ build-jdk = "11"
 test-jdk = "11"
 
 api = "2023.1"
-core = "2024.1"
+core = "2024.2"
 
 junit = "5.9.3"
 jacoco = "0.8.7"
