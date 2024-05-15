@@ -8,7 +8,6 @@ package io.openapiprocessor.micronaut.processor
 import io.openapiprocessor.api.v2.Version
 import io.openapiprocessor.core.version.GitHubVersionException
 import io.openapiprocessor.core.version.GitHubVersionProvider
-import io.openapiprocessor.core.writer.DefaultWriterFactory
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
