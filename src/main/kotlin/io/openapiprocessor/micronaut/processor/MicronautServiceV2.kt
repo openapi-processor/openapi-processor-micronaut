@@ -27,7 +27,7 @@ class MicronautServiceV2(
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
 
     override fun getName(): String {
-        return "spring"
+        return "micronaut"
     }
 
     override fun run(processorOptions: MutableMap<String, *>) {
