@@ -10,6 +10,7 @@ import io.openapiprocessor.core.model.datatypes.DataTypeConstraints
 import io.openapiprocessor.core.model.datatypes.DataTypeName
 import io.openapiprocessor.core.model.datatypes.LongDataType
 import io.openapiprocessor.core.model.datatypes.ObjectDataType
+import io.openapiprocessor.core.model.datatypes.PropertyDataType
 import io.openapiprocessor.core.model.datatypes.StringDataType
 import io.openapiprocessor.core.model.parameters.CookieParameter
 import io.openapiprocessor.core.model.parameters.HeaderParameter
@@ -72,8 +73,9 @@ class ParameterAnnotationWriterSpec extends Specification {
         def body = new RequestBody (
             'body', 'application/json',
             new ObjectDataType (new DataTypeName('FooRequestBody', 'FooRequestBody'), '',
-                ['foo': new StringDataType ()], null, false, null),
-            true, false)
+                    ['foo': new StringDataType ()] as LinkedHashMap<String, PropertyDataType>,
+                    null, false, null),
+            true, false, null)
 
         when:
         writer.write (target, body)

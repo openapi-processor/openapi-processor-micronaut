@@ -45,7 +45,7 @@ class MicronautProcessor {
             val writerFactory = DefaultWriterFactory(options)
             val generatedInfo = createGeneratedInfo(options)
             val generatedWriter = GeneratedWriterImpl(generatedInfo, options)
-            val validationWriter = ValidationWriter(options)
+            val validationWriter = ValidationWriter(options, generatedWriter)
             val beanValidations = BeanValidations(options)
             val javaDocWriter = JavaDocWriter(identifier)
             val formatter = GoogleFormatter()

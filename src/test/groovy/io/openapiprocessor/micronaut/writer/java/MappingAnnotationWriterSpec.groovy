@@ -46,7 +46,8 @@ class MappingAnnotationWriterSpec extends Specification {
         def endpoint = createEndpoint (path: '/foo', method: HttpMethod.GET, responses: [
             '204' : [new EmptyResponse ()]
         ], requestBodies: [
-            new RequestBody('body', contentType, new StringDataType (), false, false)
+            new RequestBody('body', contentType, new StringDataType (), false, false,
+                    null)
         ])
 
         when:
@@ -86,7 +87,8 @@ class MappingAnnotationWriterSpec extends Specification {
                 new Response (responseContentType, new StringDataType (), null)
             ]
         ], requestBodies: [
-            new RequestBody('body', requestContentType, new StringDataType (), false, false)
+            new RequestBody('body', requestContentType, new StringDataType (), false, false,
+                    null)
         ])
 
         when:
@@ -140,12 +142,12 @@ class MappingAnnotationWriterSpec extends Specification {
         def endpoint = createEndpoint (path: '/foo', method: HttpMethod.GET, responses: [
             '204' : [new EmptyResponse ()]
         ], requestBodies: [
-            new RequestBody('body', 'foo/in', new StringDataType (),
-                false, false),
-            new RequestBody('body', 'foo/in', new StringDataType (),
-                false, false),
-            new RequestBody('body', 'foo/in', new StringDataType (),
-                false, false)
+            new RequestBody('body', 'foo/in', new StringDataType (), false, false,
+                    null),
+            new RequestBody('body', 'foo/in', new StringDataType (), false, false,
+                    null),
+            new RequestBody('body', 'foo/in', new StringDataType (), false, false,
+                    null)
         ])
 
         when:
