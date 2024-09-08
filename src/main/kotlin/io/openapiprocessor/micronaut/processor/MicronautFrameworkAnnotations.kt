@@ -5,6 +5,7 @@
 
 package io.openapiprocessor.micronaut.processor
 
+import io.openapiprocessor.core.framework.AnnotationType
 import io.openapiprocessor.core.framework.FrameworkAnnotations
 import io.openapiprocessor.core.model.Annotation
 import io.openapiprocessor.core.parser.HttpMethod
@@ -39,10 +40,19 @@ class MicronautFrameworkAnnotations: FrameworkAnnotations {
         }
     }
 
+    override fun getAnnotation(type: AnnotationType): Annotation {
+        return when (type) {
+            AnnotationType.INTERFACE_PATH_PREFIX -> REQUEST_MAPPING_ANNOTATION
+            else -> throw NotImplementedError()
+        }
+    }
+
     private fun getAnnotation(key: String): Annotation {
         return PARAMETER_ANNOTATIONS.getValue(key)
     }
 }
+
+private val REQUEST_MAPPING_ANNOTATION = Annotation(getAnnotationName("UriMapping"))
 
 private val MAPPING_ANNOTATIONS = hashMapOf(
     HttpMethod.DELETE  to Annotation(getAnnotationName("Delete")),
