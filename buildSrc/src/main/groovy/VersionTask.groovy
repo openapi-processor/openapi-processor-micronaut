@@ -42,7 +42,11 @@ class VersionTask extends DefaultTask {
 
 package io.openapiprocessor.micronaut;
  
+/**
+ * Version
+ */
 public class Version {
+    /** current version */
     public static final String version = "${version}"; 
 }
  
