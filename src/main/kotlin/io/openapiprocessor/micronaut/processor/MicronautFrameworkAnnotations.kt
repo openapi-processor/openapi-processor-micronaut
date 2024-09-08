@@ -52,7 +52,7 @@ class MicronautFrameworkAnnotations: FrameworkAnnotations {
     }
 }
 
-private val REQUEST_MAPPING_ANNOTATION = Annotation(getAnnotationName("UriMapping"))
+private val REQUEST_MAPPING_ANNOTATION = Annotation(getAnnotationName("Controller"))
 
 private val MAPPING_ANNOTATIONS = hashMapOf(
     HttpMethod.DELETE  to Annotation(getAnnotationName("Delete")),
