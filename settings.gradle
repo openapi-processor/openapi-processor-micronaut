@@ -13,5 +13,3 @@ gradleEnterprise {
 }
 
 rootProject.name = 'openapi-processor-micronaut'
-
-includeBuild("../openapi-processor-base")
