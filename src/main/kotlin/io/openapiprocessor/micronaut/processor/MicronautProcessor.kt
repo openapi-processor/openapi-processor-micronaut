@@ -22,9 +22,12 @@ import java.time.OffsetDateTime
 /**
  *  Entry point of openapi-processor-micronaut.
  */
-class MicronautProcessor {
+class MicronautProcessor : io.openapiprocessor.api.v2.OpenApiProcessorTest {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
     private var testMode = false
+
+    private var sourceRoot: String? = null
+    private var resourceRoot: String? = null
 
     fun run(processorOptions: MutableMap<String, *>) {
         try {
@@ -130,6 +133,20 @@ class MicronautProcessor {
     private fun convertOptions(processorOptions: Map<String, *>): ApiOptions {
         val options = OptionsConverter().convertOptions (processorOptions as Map<String, Any>)
         options.validate ()
+
+        if (options.targetDirOptions.standardLayout) {
+            sourceRoot =  "java"
+            resourceRoot = "resources"
+        }
+
         return options
+    }
+
+    override fun getSourceRoot(): String? {
+        return sourceRoot
+    }
+
+    override fun getResourceRoot(): String? {
+        return resourceRoot
     }
 }

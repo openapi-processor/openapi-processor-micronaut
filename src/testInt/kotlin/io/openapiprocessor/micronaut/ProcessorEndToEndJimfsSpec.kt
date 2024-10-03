@@ -10,10 +10,7 @@ import com.google.common.jimfs.Jimfs
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.openapiprocessor.core.parser.ParserType
-import io.openapiprocessor.test.FileSupport
-import io.openapiprocessor.test.ModelTypes
-import io.openapiprocessor.test.TestSet
-import io.openapiprocessor.test.TestSetRunner
+import io.openapiprocessor.test.*
 
 /**
  * runs integration tests with Jimfs.
@@ -22,13 +19,15 @@ class ProcessorEndToEndJimfsSpec: StringSpec({
 
     for (testSet in sources()) {
         "jimfs - $testSet".config(enabled = true) {
-            val support = FileSupport(
-                ProcessorEndToEndJimfsSpec::class.java,
-                testSet.inputs, testSet.outputs)
+            val fs = Jimfs.newFileSystem (Configuration.unix ())
+            val reader = ResourceReader(ProcessorEndToEndJimfsSpec::class.java)
 
-            TestSetRunner(testSet, support)
-            .runOnCustomFileSystem(Jimfs.newFileSystem (Configuration.unix ()))
-            .shouldBeTrue()
+            val testFiles = TestFilesJimfs(fs, reader)
+            val test = Test(testSet, testFiles)
+
+            TestSetRunner(test, testSet)
+                .runOnNativeFileSystem()
+                .shouldBeTrue()
         }
     }
 

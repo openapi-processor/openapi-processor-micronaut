@@ -22,9 +22,13 @@ class MicronautServiceV2(
     private val provider: GitHubVersionProvider = GitHubVersionProvider("openapi-processor-micronaut"),
     private val testMode: Boolean = false):
     io.openapiprocessor.api.v2.OpenApiProcessor,
-    io.openapiprocessor.api.v2.OpenApiProcessorVersion
+    io.openapiprocessor.api.v2.OpenApiProcessorVersion,
+    io.openapiprocessor.api.v2.OpenApiProcessorTest
 {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
+
+    private var sourceRoot: String? = null
+    private var resourceRoot: String? = null
 
     override fun getName(): String {
         return "micronaut"
@@ -37,6 +41,9 @@ class MicronautServiceV2(
                 processor.enableTestMode()
             }
             processor.run(processorOptions)
+
+            sourceRoot = processor.sourceRoot
+            resourceRoot = processor.resourceRoot
 
         } catch (ex: Exception) {
             throw ex
@@ -66,5 +73,13 @@ class MicronautServiceV2(
             // just ignore, do not complain
             return false
         }
+    }
+
+    override fun getSourceRoot(): String? {
+        return sourceRoot
+    }
+
+    override fun getResourceRoot(): String? {
+        return resourceRoot
     }
 }

@@ -9,6 +9,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.openapiprocessor.core.parser.ParserType.INTERNAL
+import io.openapiprocessor.core.parser.ParserType.SWAGGER
 import io.openapiprocessor.test.*
 
 /**
@@ -17,23 +18,24 @@ import io.openapiprocessor.test.*
 class ProcessorPendingSpec: StringSpec({
 
     for (testSet in sources()) {
-        "native - $testSet".config(enabled = false) {
+        "native - $testSet".config(enabled = true) {
             val folder = tempdir()
+            val reader = ResourceReader(ProcessorPendingSpec::class.java)
 
-            val support = FileSupport(
-                ProcessorPendingSpec::class.java,
-                testSet.inputs, testSet.outputs)
+            val testFiles = TestFilesNative(folder, reader)
+            val test = Test(testSet, testFiles)
 
-            TestSetRunner(testSet, support)
-            .runOnNativeFileSystem(folder)
-            .shouldBeTrue()
+            TestSetRunner(test, testSet)
+                .runOnNativeFileSystem()
+                .shouldBeTrue()
         }
     }
 })
 
 private fun sources(): Collection<TestSet> {
     return listOf(
-        testSet("bean-validation-introspected", INTERNAL, API_30, model = "default", outputs = "outputs.yaml", expected = "outputs"),
-        testSet("bean-validation-introspected", INTERNAL, API_31, model = "default", outputs = "outputs.yaml", expected = "outputs")
+        testSet("params-path-simple-data-types", SWAGGER, API_30, model = "default", outputs = "outputs.yaml", expected = "outputs"),
+//        testSet("bean-validation-introspected", INTERNAL, API_30, model = "default", outputs = "outputs.yaml", expected = "outputs"),
+//        testSet("bean-validation-introspected", INTERNAL, API_31, model = "default", outputs = "outputs.yaml", expected = "outputs")
     )
 }
