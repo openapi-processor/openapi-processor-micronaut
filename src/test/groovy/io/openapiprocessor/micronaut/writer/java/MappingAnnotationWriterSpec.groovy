@@ -5,6 +5,7 @@
 
 package io.openapiprocessor.micronaut.writer.java
 
+import io.openapiprocessor.core.model.Documentation
 import io.openapiprocessor.core.model.EmptyResponse
 import io.openapiprocessor.core.model.Endpoint
 import io.openapiprocessor.core.parser.HttpMethod
@@ -182,15 +183,17 @@ class MappingAnnotationWriterSpec extends Specification {
 
     @Deprecated
     private Endpoint createEndpoint (Map properties) {
-        return new Endpoint(
+        def ep = new Endpoint(
             properties.path as String ?: '',
             properties.method as HttpMethod ?: HttpMethod.GET,
-            properties.parameters ?: [],
-            properties.requestBodies ?: [],
-            properties.responses ?: [:],
             properties.operationId as String ?: null,
             properties.deprecated as boolean ?: false,
-            properties.description as String ?: null
+            new Documentation(null, properties.description as String),
         )
+        ep.parameters = properties.parameters ?: []
+        ep.responses = properties.responses ?: [:]
+        ep.requestBodies = properties.requestBodies ?: []
+        ep.initEndpointResponses ()
     }
+
 }
