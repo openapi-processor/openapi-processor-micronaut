@@ -8,6 +8,7 @@ package io.openapiprocessor.micronaut.processor
 import io.openapiprocessor.api.v2.Version
 import io.openapiprocessor.core.version.GitHubVersionException
 import io.openapiprocessor.core.version.GitHubVersionProvider
+import io.openapiprocessor.test.api.OpenApiProcessorTest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -23,7 +24,7 @@ class MicronautServiceV2(
     private val testMode: Boolean = false):
     io.openapiprocessor.api.v2.OpenApiProcessor,
     io.openapiprocessor.api.v2.OpenApiProcessorVersion,
-    io.openapiprocessor.api.v2.OpenApiProcessorTest
+    OpenApiProcessorTest
 {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
 

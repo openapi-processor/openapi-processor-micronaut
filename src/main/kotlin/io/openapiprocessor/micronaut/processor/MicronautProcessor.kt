@@ -15,6 +15,7 @@ import io.openapiprocessor.micronaut.Version
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
+import io.openapiprocessor.test.api.OpenApiProcessorTest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.time.OffsetDateTime
@@ -22,7 +23,7 @@ import java.time.OffsetDateTime
 /**
  *  Entry point of openapi-processor-micronaut.
  */
-class MicronautProcessor : io.openapiprocessor.api.v2.OpenApiProcessorTest {
+class MicronautProcessor : OpenApiProcessorTest {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass.name)
     private var testMode = false
 
