@@ -10,6 +10,7 @@ import io.openapiprocessor.core.converter.ApiOptions
 import io.openapiprocessor.core.converter.OptionsConverter
 import io.openapiprocessor.core.parser.OpenApiParser
 import io.openapiprocessor.core.writer.DefaultWriterFactory
+import io.openapiprocessor.core.writer.SourceFormatter
 import io.openapiprocessor.core.writer.java.*
 import io.openapiprocessor.micronaut.Version
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
@@ -52,7 +53,7 @@ class MicronautProcessor : OpenApiProcessorTest {
             val validationWriter = ValidationWriter(options, generatedWriter)
             val beanValidations = BeanValidations(options)
             val javaDocWriter = JavaDocWriter(identifier)
-            val formatter = GoogleFormatter()
+            val formatter = getFormatter(options)
 
             val writer = ApiWriter(
                 options,
@@ -149,5 +150,9 @@ class MicronautProcessor : OpenApiProcessorTest {
 
     override fun getResourceRoot(): String? {
         return resourceRoot
+    }
+
+    private fun getFormatter(apiOptions: ApiOptions): SourceFormatter {
+        return SourceFormatterFactory().getFormatter(apiOptions)
     }
 }
