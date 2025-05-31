@@ -16,6 +16,7 @@ import io.openapiprocessor.micronaut.Version
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
+import io.openapiprocessor.micronaut.writer.java.StatusAnnotationWriter
 import io.openapiprocessor.test.api.OpenApiProcessorTest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -65,6 +66,7 @@ class MicronautProcessor : OpenApiProcessorTest {
                     MethodWriter(
                         options,
                         identifier,
+                        StatusAnnotationWriter(annotations),
                         MappingAnnotationWriter(),
                         ParameterAnnotationWriter(annotations),
                         beanValidations,

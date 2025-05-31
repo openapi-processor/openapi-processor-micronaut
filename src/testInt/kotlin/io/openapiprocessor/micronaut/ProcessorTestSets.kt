@@ -6,6 +6,7 @@
 package io.openapiprocessor.micronaut
 
 import io.openapiprocessor.test.*
+import io.openapiprocessor.test.test30_D_
 
 val ALL_30: List<TestParams> = listOf(
     test30_DR("bean-validation-introspected"),
@@ -15,7 +16,8 @@ val ALL_30: List<TestParams> = listOf(
     test30_D_("params-path-simple-data-types"),
     test30_DR("params-request-body"),
     test30_DR("params-request-body-multipart-mapping"),
-    test30_D_("params-simple-data-types")
+    test30_D_("params-simple-data-types"),
+    test30_D_("response-status")
 )
 
 val ALL_31: List<TestParams> = listOf(
@@ -26,5 +28,6 @@ val ALL_31: List<TestParams> = listOf(
     test31_D_("params-path-simple-data-types"),
     test31_DR("params-request-body"),
     test31_DR("params-request-body-multipart-mapping"),
-    test31_D_("params-simple-data-types")
+    test31_D_("params-simple-data-types"),
+    test31_D_("response-status")
 )
