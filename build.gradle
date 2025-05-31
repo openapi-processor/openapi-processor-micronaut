@@ -29,7 +29,6 @@ testing {
 
         testInt(JvmTestSuite) {
             useJUnitJupiter(libs.versions.junit.get())
-            testType = TestSuiteType.INTEGRATION_TEST
 
             dependencies {
                 implementation(project())
@@ -138,6 +137,8 @@ dependencies {
     testIntImplementation (libs.mockk)
     testIntImplementation (libs.logback)
     testIntImplementation (libs.jimfs)
+    testIntImplementation (libs.micronaut.web)
+    testIntImplementation (libs.micronaut.data)
 }
 
 tasks.named("dependencyUpdates").configure {
