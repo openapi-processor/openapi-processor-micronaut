@@ -25,7 +25,7 @@ class ProcessorEndToEndSpec: StringSpec({
             val test = Test(testSet, testFiles)
 
             TestSetRunner(test, testSet)
-                .runOnNativeFileSystem()
+                .run()
                 .shouldBeTrue()
         }
     }
