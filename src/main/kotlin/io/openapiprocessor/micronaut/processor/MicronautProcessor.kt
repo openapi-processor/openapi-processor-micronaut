@@ -12,7 +12,7 @@ import io.openapiprocessor.core.parser.OpenApiParser
 import io.openapiprocessor.core.writer.DefaultWriterFactory
 import io.openapiprocessor.core.writer.SourceFormatter
 import io.openapiprocessor.core.writer.java.*
-import io.openapiprocessor.micronaut.Version
+import io.openapiprocessor.micronaut.Versions
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
@@ -44,7 +44,9 @@ class MicronautProcessor : OpenApiProcessorTest {
             val annotations = MicronautFrameworkAnnotations()
 
             val options = convertOptions(processorOptions)
-            val identifier = JavaIdentifier(IdentifierOptions(options.identifierWordBreakFromDigitToLetter))
+            val identifier = JavaIdentifier(IdentifierOptions(
+                options.identifierWordBreakFromDigitToLetter,
+                options.identifierPrefixInvalidEnumStart))
             val cv = ApiConverter(options, identifier, framework)
             val api = cv.convert(openapi)
 
@@ -111,7 +113,7 @@ class MicronautProcessor : OpenApiProcessorTest {
     }
 
     private fun createGeneratedInfo(options: ApiOptions): GeneratedInfo {
-        var version = Version.version
+        var version = Versions.version
         var date: String? = OffsetDateTime.now().toString()
 
         if (!options.generatedDate)

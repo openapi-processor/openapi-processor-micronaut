@@ -52,7 +52,7 @@ class MicronautServiceV2(
     }
 
     override fun getVersion(): String {
-        return io.openapiprocessor.micronaut.Version.version
+        return io.openapiprocessor.micronaut.Versions.version
     }
 
     override fun getLatestVersion(): Version {

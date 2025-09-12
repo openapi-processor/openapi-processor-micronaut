@@ -21,7 +21,6 @@ jobs:
           distribution: 'temurin'
           java-version: |
             17
-            11
 
       - name: set up gradle
         uses: gradle/actions/setup-gradle@v4
@@ -30,6 +29,8 @@ jobs:
         env:
           PUBLISH_USER: ${{ secrets.PUBLISH_USER }}
           PUBLISH_KEY: ${{ secrets.PUBLISH_KEY }}
+          ORG_GRADLE_PROJECT_signKey: ${{ secrets.SIGN_KEY_ORG }}
+          ORG_GRADLE_PROJECT_signPwd: ${{ secrets.SIGN_PWD }}
           SIGN_KEY: ${{ secrets.SIGN_KEY_ORG }}
           SIGN_PWD: ${{ secrets.SIGN_PWD }}
         run: |
