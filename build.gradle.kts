@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     `java-library`
     groovy
@@ -33,6 +35,7 @@ kotlin {
 
     compilerOptions {
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
+        jvmTarget = JvmTarget.fromTarget(libs.versions.target.jdk.get())
     }
 }
 
@@ -108,10 +111,6 @@ tasks.withType<Test>().configureEach {
         "--add-exports", "jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
         "--add-exports", "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
     ))
-
-    javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion.set(JavaLanguageVersion.of(libs.versions.test.jdk.get()))
-    })
 
     finalizedBy(tasks.named("jacocoTestReport"))
 }
