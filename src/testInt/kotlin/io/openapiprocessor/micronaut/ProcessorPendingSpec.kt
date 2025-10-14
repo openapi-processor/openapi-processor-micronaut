@@ -8,8 +8,6 @@ package io.openapiprocessor.micronaut
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.booleans.shouldBeTrue
-import io.openapiprocessor.core.parser.ParserType.INTERNAL
-import io.openapiprocessor.core.parser.ParserType.SWAGGER
 import io.openapiprocessor.test.*
 
 /**
@@ -34,8 +32,6 @@ class ProcessorPendingSpec: StringSpec({
 
 private fun sources(): Collection<TestSet> {
     return listOf(
-        testSet("params-path-simple-data-types", SWAGGER, API_30, model = "default", outputs = "outputs.yaml", expected = "outputs"),
-//        testSet("bean-validation-introspected", INTERNAL, API_30, model = "default", outputs = "outputs.yaml", expected = "outputs"),
-//        testSet("bean-validation-introspected", INTERNAL, API_31, model = "default", outputs = "outputs.yaml", expected = "outputs")
+        testSet("params-path-simple-data-types", "SWAGGER", API_30),
     )
 }

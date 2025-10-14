@@ -37,21 +37,5 @@ class CompileExpectedSpec: StringSpec({
 })
 
 private fun sources(): Collection<TestSet> {
-    val compile30 = ALL_30.map {
-        testSet(it.name, ParserType.INTERNAL, it.openapi, model = "default", outputs = it.outputs, expected = it.expected)
-    }
-
-    val compile31 = ALL_31.map {
-        testSet(it.name, ParserType.INTERNAL, it.openapi, model = "default", outputs = it.outputs, expected = it.expected)
-    }
-
-    val compile30r = ALL_30.filter { it.modelTypes.contains(ModelTypes.RECORD) }.map {
-        testSet(it.name, ParserType.INTERNAL, it.openapi, model = "record", outputs = it.outputs, expected = it.expected)
-    }
-
-    val compile31r = ALL_31.filter { it.modelTypes.contains(ModelTypes.RECORD) }.map {
-        testSet(it.name, ParserType.INTERNAL, it.openapi, model = "record", outputs = it.outputs, expected = it.expected)
-    }
-
-    return compile30 + compile31 + compile30r + compile31r
+    return buildTestSets()
 }
