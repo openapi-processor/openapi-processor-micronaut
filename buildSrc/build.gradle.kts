@@ -7,7 +7,9 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 
     implementation(libs.plugin.kotlin)
-//    implementation(libs.plugin.checker)
-//    implementation(libs.plugin.updates)
     implementation(libs.plugin.build)
+
+    implementation(platform(libs.jackson.bom))
+    implementation(libs.jackson.kotlin)
+    implementation(libs.jackson.yaml)
 }
