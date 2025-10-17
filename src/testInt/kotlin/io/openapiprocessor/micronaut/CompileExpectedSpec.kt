@@ -8,12 +8,10 @@ package io.openapiprocessor.micronaut
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.booleans.shouldBeTrue
-import io.openapiprocessor.core.parser.ParserType
-import io.openapiprocessor.test.*
-import kotlin.collections.filter
-import kotlin.collections.map
-import kotlin.collections.plus
-import kotlin.jvm.java
+import io.openapiprocessor.test.ResourceReader
+import io.openapiprocessor.test.TestFilesNative
+import io.openapiprocessor.test.TestSet
+import io.openapiprocessor.test.TestSetCompiler
 
 
 class CompileExpectedSpec: StringSpec({
