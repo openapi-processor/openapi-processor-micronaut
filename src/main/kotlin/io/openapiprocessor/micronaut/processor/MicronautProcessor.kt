@@ -14,7 +14,7 @@ import io.openapiprocessor.core.writer.SourceFormatter
 import io.openapiprocessor.core.writer.java.*
 import io.openapiprocessor.micronaut.Versions
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
-import io.openapiprocessor.micronaut.writer.java.MappingAnnotationWriter
+import io.openapiprocessor.micronaut.writer.java.MappingAnnotationFactory
 import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
 import io.openapiprocessor.micronaut.writer.java.StatusAnnotationWriter
 import io.openapiprocessor.test.api.OpenApiProcessorTest
@@ -55,7 +55,7 @@ class MicronautProcessor : OpenApiProcessorTest {
             val generatedWriter = GeneratedWriterImpl(generatedInfo, options)
             val validationWriter = ValidationWriter(options, generatedWriter)
             val beanValidations = BeanValidations(options)
-            val javaDocWriter = JavaDocWriter(identifier)
+            val javaDocWriter = JavaDocFactory(identifier)
             val formatter = getFormatter(options)
 
             val writer = ApiWriter(
@@ -69,7 +69,7 @@ class MicronautProcessor : OpenApiProcessorTest {
                         options,
                         identifier,
                         StatusAnnotationWriter(annotations),
-                        MappingAnnotationWriter(),
+                        MappingAnnotationFactory(annotations),
                         ParameterAnnotationWriter(annotations),
                         beanValidations,
                         javaDocWriter
