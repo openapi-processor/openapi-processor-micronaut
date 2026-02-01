@@ -20,7 +20,7 @@ val ALL_3x: List<TestParams2> = join(
     testX("params-pageable-mapping"),
     testX("params-path-simple-data-types"),
     tests("params-request-body"),
-    tests("params-request-body-fomultipart-mapping"),
+    tests("params-request-body-form-urlencoded"),
     tests("params-request-body-multipart-mapping"),
     testX("params-simple-data-types"),
     testX("response-status")
