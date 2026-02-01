@@ -32,6 +32,6 @@ class ProcessorPendingSpec: StringSpec({
 
 private fun sources(): Collection<TestSet> {
     return listOf(
-        testSet("params-path-simple-data-types", "SWAGGER", API_30),
+        testSet("params-request-body-form-urlencoded", "INTERNAL", API_30),
     )
 }
