@@ -4,14 +4,13 @@ plugins {
     `java-library`
     groovy
     kotlin
-    jacoco
     alias(libs.plugins.versions)
     alias(libs.plugins.sonar)
     alias(libs.plugins.updates)
     id("openapiprocessor.test")
     id("openapiprocessor.testInt")
     id("openapiprocessor.publish")
-    id("jacoco-report-aggregation")
+    id("openapiprocessor.coverage")
     id("openapiprocessor.newapi")
 }
 
