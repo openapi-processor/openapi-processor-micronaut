@@ -3,6 +3,7 @@ package generated.api;
 import generated.model.Foo;
 import generated.support.Generated;
 import io.micronaut.http.HttpStatus;
+import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.QueryValue;
 import io.micronaut.http.annotation.Status;
@@ -17,7 +18,7 @@ public interface Api {
             @QueryValue(value = "bar") String bar);
 
     @Status(HttpStatus.NO_CONTENT)
-    @Post(uri = "/foo/object")
-    void postFooObject(Foo body);
+    @Post(uri = "/foo/object", consumes = {"application/x-www-form-urlencoded"})
+    void postFooObject(@Body Foo body);
 
 }
