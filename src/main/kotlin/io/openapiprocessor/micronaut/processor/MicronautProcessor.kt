@@ -55,6 +55,7 @@ class MicronautProcessor : OpenApiProcessorTest {
             val generatedWriter = GeneratedWriterImpl(generatedInfo, options)
             val validationWriter = ValidationWriter(options, generatedWriter)
             val beanValidations = BeanValidations(options)
+            val jacksonAnnotations = JacksonAnnotations(options)
             val javaDocWriter = JavaDocFactory(identifier)
             val formatter = getFormatter(options)
 
@@ -84,6 +85,7 @@ class MicronautProcessor : OpenApiProcessorTest {
                         identifier,
                         generatedWriter,
                         beanValidations,
+                        jacksonAnnotations,
                         javaDocWriter
                     )
                     else -> DataTypeWriterPojo(
@@ -91,6 +93,7 @@ class MicronautProcessor : OpenApiProcessorTest {
                         identifier,
                         generatedWriter,
                         beanValidations,
+                        jacksonAnnotations,
                         javaDocWriter
                     )
                 },
