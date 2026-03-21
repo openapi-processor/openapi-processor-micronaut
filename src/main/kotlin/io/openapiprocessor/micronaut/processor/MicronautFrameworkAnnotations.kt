@@ -9,9 +9,9 @@ import io.openapiprocessor.core.converter.mapping.SimpleParameterValue
 import io.openapiprocessor.core.framework.FrameworkAnnotations
 import io.openapiprocessor.core.model.Annotation
 import io.openapiprocessor.core.model.EndpointResponseStatus
-import io.openapiprocessor.core.parser.HttpMethod
 import io.openapiprocessor.core.model.RequestBody
 import io.openapiprocessor.core.model.parameters.*
+import io.openapiprocessor.core.openapi.HttpMethod
 import io.openapiprocessor.micronaut.model.parameters.QueryParameter
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

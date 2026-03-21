@@ -5,14 +5,10 @@
 
 package io.openapiprocessor.micronaut.writer.java
 
-import io.openapiprocessor.core.model.Documentation
-import io.openapiprocessor.core.model.EmptyResponse
-import io.openapiprocessor.core.model.Endpoint
-import io.openapiprocessor.core.parser.HttpMethod
-import io.openapiprocessor.core.model.RequestBody
-import io.openapiprocessor.core.model.Response
+import io.openapiprocessor.core.model.*
 import io.openapiprocessor.core.model.datatypes.StringDataType
 import io.openapiprocessor.core.model.parameters.MultipartParameter
+import io.openapiprocessor.core.openapi.HttpMethod
 import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
 import spock.lang.Specification
 

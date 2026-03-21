@@ -9,7 +9,7 @@ import io.openapiprocessor.core.framework.FrameworkBase
 import io.openapiprocessor.core.model.datatypes.DataType
 import io.openapiprocessor.core.model.parameters.Parameter
 import io.openapiprocessor.micronaut.model.parameters.QueryParameter
-import io.openapiprocessor.core.parser.Parameter as ParserParameter
+import io.openapiprocessor.core.openapi.Parameter as OpenApiParameter
 
 /**
  * Micronaut model factory.
@@ -17,7 +17,7 @@ import io.openapiprocessor.core.parser.Parameter as ParserParameter
 class MicronautFramework: FrameworkBase() {
 
     @Override
-    override fun createQueryParameter(parameter: ParserParameter, dataType: DataType): Parameter {
+    override fun createQueryParameter(parameter: OpenApiParameter, dataType: DataType): Parameter {
         return QueryParameter (
             parameter.getName(),
             dataType,
