@@ -12,7 +12,7 @@ base = "2026.3"
 jacoco = "0.8.14"
 jacocolog = "4.0.1"
 
-micronaut = "3.7.1"
+micronaut = "5.0.0"
 
 [libraries]
 openapi-processor-api = { module = "io.openapiprocessor:openapi-processor-api", version.ref = "api" }
