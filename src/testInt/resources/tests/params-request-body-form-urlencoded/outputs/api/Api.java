@@ -12,7 +12,7 @@ import io.micronaut.http.annotation.Status;
 public interface Api {
 
     @Status(HttpStatus.NO_CONTENT)
-    @Post(uri = "/foo/params")
+    @Post(uri = "/foo/params", consumes = {"application/x-www-form-urlencoded"})
     void postFooParams(
             @QueryValue(value = "foo") String foo,
             @QueryValue(value = "bar") String bar);

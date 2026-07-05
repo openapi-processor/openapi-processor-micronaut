@@ -185,6 +185,7 @@ class MappingAnnotationFactorySpec extends Specification {
             properties.operationId as String ?: null,
             properties.deprecated as boolean ?: false,
             new Documentation(null, properties.description as String),
+            new HashSet<String>()
         )
     }
 }
