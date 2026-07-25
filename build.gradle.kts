@@ -90,6 +90,7 @@ dependencies {
     testIntImplementation (libs.mockk)
     testIntImplementation (libs.logback)
     testIntImplementation (libs.jimfs)
+    testIntImplementation (platform(libs.micronaut.bom))
     testIntImplementation (libs.micronaut.web)
     testIntImplementation (libs.micronaut.data)
 }
