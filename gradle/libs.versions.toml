@@ -12,7 +12,7 @@ base = "2026.3.1"
 jacoco = "0.8.14"
 jacocolog = "4.0.1"
 
-micronaut = "3.7.1"
+micronaut = "4.10.14"
 
 [libraries]
 openapi-processor-api = { module = "io.openapiprocessor:openapi-processor-api", version.ref = "api" }
@@ -27,7 +27,7 @@ jackson-bom = "com.fasterxml.jackson:jackson-bom:2.22.1"
 jackson-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml" }
 jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 
-micronaut-bom = { module = "io.micronaut:micronaut-bom", version.ref = "micronaut" }
+micronaut-bom = { module = "io.micronaut.platform:micronaut-platform", version.ref = "micronaut" }
 micronaut-web = { module ="io.micronaut:micronaut-http" }
 micronaut-data = { module ="io.micronaut.data:micronaut-data-model" }
 
