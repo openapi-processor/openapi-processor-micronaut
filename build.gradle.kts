@@ -1,16 +1,16 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    `java-library`
     groovy
-    kotlin
-    alias(libs.plugins.versions)
-    alias(libs.plugins.sonar)
-    alias(libs.plugins.updates)
+    kotlin("jvm")
+    `java-library`
+    alias(build.plugins.versions)
+    alias(build.plugins.sonar)
     id("openapiprocessor.test")
     id("openapiprocessor.testInt")
     id("openapiprocessor.publish")
     id("openapiprocessor.coverage")
+    id("openapiprocessor.versions")
     id("openapiprocessor.newapi")
 }
 
@@ -31,11 +31,10 @@ java {
 }
 
 kotlin {
-    jvmToolchain(libs.versions.build.jdk.get().toInt())
+    jvmToolchain(build.versions.build.jdk.get().toInt())
 
     compilerOptions {
-        freeCompilerArgs.add("-Xannotation-default-target=param-property")
-        jvmTarget = JvmTarget.fromTarget(libs.versions.target.jdk.get())
+        jvmTarget = JvmTarget.fromTarget(build.versions.target.jdk.get())
     }
 }
 
@@ -95,16 +94,9 @@ dependencies {
     testIntImplementation (libs.micronaut.data)
 }
 
-//tasks.named("dependencyUpdates").configure {
-//    rejectVersionIf {
-//        String v = it.candidate.version
-//        println "candidate: $v"
-//        return v.endsWith ("-M1") || v.contains ("alpha") || v.contains ("beta")
-//    }
-//}
-
 tasks.withType<Test>().configureEach {
     jvmArgs(listOf(
+        "-Xshare:off",
         "--add-exports", "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
         "--add-exports", "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
         "--add-exports", "jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED",
@@ -117,7 +109,7 @@ tasks.withType<Test>().configureEach {
 }
 
 jacoco {
-    toolVersion = libs.versions.jacoco.get()
+    toolVersion = build.versions.jacoco.get()
 }
 
 tasks.jacocoTestReport {
@@ -139,6 +131,7 @@ sonarqube {
     property("sonar.projectKey", "openapi-processor_openapi-processor-micronaut")
     property("sonar.organization", "openapi-processor")
     property("sonar.host.url", "https://sonarcloud.io")
-    property("sonar.coverage.jacoco.xmlReportPaths", layout.buildDirectory.dir("reports/jacoco/test/jacocoTestReport.xml").get().toString())
+    property("sonar.coverage.jacoco.xmlReportPaths",
+        layout.buildDirectory.dir("reports/jacoco/test/jacocoTestReport.xml").get().toString())
   }
 }
