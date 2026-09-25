@@ -29,7 +29,7 @@ micronaut-web = { module ="io.micronaut:micronaut-http" }
 micronaut-data = { module ="io.micronaut.data:micronaut-data-model" }
 
 jimfs = "com.google.jimfs:jimfs:1.3.2"
-slf4j = "org.slf4j:slf4j-api:2.0.19"
+slf4j = "org.slf4j:slf4j-api:2.0.20"
 logback = "ch.qos.logback:logback-classic:1.6.3"
 
 kotest-bom = "io.kotest:kotest-bom:6.2.5"
