@@ -7,49 +7,48 @@ package io.openapiprocessor.micronaut.writer.java
 
 import io.openapiprocessor.core.model.Endpoint
 import io.openapiprocessor.core.model.EndpointResponse
+import io.openapiprocessor.core.writer.java.CodeSnippet
 import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
-import io.openapiprocessor.core.writer.java.MappingAnnotationFactory as CoreMappingAnnotationFactory
+import io.openapiprocessor.core.writer.java.MappingAnnotationFactory as CoreFactory
 
-/**
- * micronaut mapping annotation factory
- */
-class MappingAnnotationFactory(private val annotations: MicronautFrameworkAnnotations): CoreMappingAnnotationFactory {
+class MappingAnnotationFactory(private val annotations: MicronautFrameworkAnnotations): CoreFactory {
 
-    override fun create(endpoint: Endpoint, endpointResponse: EndpointResponse): List<String> {
+    override fun create(endpoint: Endpoint, endpointResponse: EndpointResponse): List<CodeSnippet> {
         return listOf(createAnnotation(endpoint, endpointResponse))
     }
 
-    private fun createAnnotation(endpoint: Endpoint, endpointResponse: EndpointResponse): String {
+    private fun createAnnotation(endpoint: Endpoint, endpointResponse: EndpointResponse): CodeSnippet {
         val annotation = annotations.getAnnotation(endpoint.method)
 
-        var mapping = annotation.annotationName
-        mapping += "("
-        mapping += "uri = " + quote(endpoint.path)
+        var snippet = annotation.annotationName
+        snippet += "("
+        snippet += "uri = " + quote(endpoint.path)
 
         val consumes = endpoint.getConsumesContentTypes()
         if (consumes.isNotEmpty()) {
-            mapping += ", "
-            mapping += "consumes = {"
-            mapping +=  consumes.map {
+            snippet += ", "
+            snippet += "consumes = {"
+            snippet +=  consumes.map {
                 quote(it)
             }.joinToString(", ")
-            mapping += '}'
+            snippet += '}'
         }
 
         val contentTypes = endpointResponse.contentTypes
         if (contentTypes.isNotEmpty()) {
-            mapping += ", "
-            mapping += "produces = {"
+            snippet += ", "
+            snippet += "produces = {"
 
-            mapping += contentTypes.map {
+            snippet += contentTypes.map {
                 quote (it)
             }.joinToString (", ")
 
-            mapping += "}"
+            snippet += "}"
         }
 
-        mapping += ")"
-        return mapping
+        snippet += ")"
+
+        return CodeSnippet(snippet, annotation.imports + annotation.referencedImports)
     }
 
     private fun quote(content: String): String {

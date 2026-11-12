@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 https://github.com/openapi-processor/openapi-processor-micronaut
+ * Copyright 2020 https://github.com/openapi-processor/openapi-processor-micronaut
  * PDX-License-Identifier: Apache-2.0
  */
 
@@ -15,8 +15,8 @@ import io.openapiprocessor.core.model.parameters.ParameterBase
 class QueryParameter(
     name: String,
     dataType: DataType,
-    required: Boolean,
-    deprecated: Boolean,
+    required: Boolean = false,
+    deprecated: Boolean = false,
     description: String? = null
 ) : ParameterBase(name, dataType, required, deprecated, description) {
 
@@ -25,7 +25,7 @@ class QueryParameter(
      */
     override val withAnnotation: Boolean
         get() {
-            // Pojo's should NOT be annotated
+            // POJO's should NOT be annotated
             if (dataType is ObjectDataType) {
                 return false
             }

@@ -6,17 +6,16 @@
 package io.openapiprocessor.micronaut.writer.java
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.equals.shouldBeEqual
 import io.openapiprocessor.core.model.Endpoint
 import io.openapiprocessor.core.model.Response
 import io.openapiprocessor.core.model.datatypes.NoneDataType
 import io.openapiprocessor.core.openapi.HttpMethod
 import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
-import java.io.StringWriter
 
-class StatusAnnotationWriterSpec: StringSpec({
-    val writer = StatusAnnotationWriter(MicronautFrameworkAnnotations())
-    val target = StringWriter()
+class StatusAnnotationFactorySpec: StringSpec({
+    val factory = StatusAnnotationFactory(MicronautFrameworkAnnotations())
 
     "write response status annotation" {
         val ep = Endpoint(
@@ -29,8 +28,12 @@ class StatusAnnotationWriterSpec: StringSpec({
             )
         )
 
-        writer.write(target, ep, ep.endpointResponses.first())
+        val codeSnippets = factory.create(ep, ep.firstSuccessResponse)
+        val responseStatus = codeSnippets.first()
 
-        target.toString() shouldBeEqual """@Status(HttpStatus.NO_CONTENT)"""
+        responseStatus.text shouldBeEqual """@Status(HttpStatus.NO_CONTENT)"""
+        responseStatus.imports shouldContainExactly setOf(
+            "io.micronaut.http.annotation.Status",
+            "io.micronaut.http.HttpStatus")
     }
 })

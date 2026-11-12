@@ -15,8 +15,8 @@ import io.openapiprocessor.core.writer.java.*
 import io.openapiprocessor.micronaut.Versions
 import io.openapiprocessor.micronaut.writer.java.BeanValidations
 import io.openapiprocessor.micronaut.writer.java.MappingAnnotationFactory
-import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationWriter
-import io.openapiprocessor.micronaut.writer.java.StatusAnnotationWriter
+import io.openapiprocessor.micronaut.writer.java.ParameterAnnotationFactory
+import io.openapiprocessor.micronaut.writer.java.StatusAnnotationFactory
 import io.openapiprocessor.test.api.OpenApiProcessorTest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -64,20 +64,17 @@ class MicronautProcessor : OpenApiProcessorTest {
                 generatedWriter,
                 validationWriter,
                 InterfaceWriter(
-                    options,
                     generatedWriter,
                     MethodWriter(
                         options,
                         identifier,
-                        StatusAnnotationWriter(annotations),
+                        StatusAnnotationFactory(annotations),
                         MappingAnnotationFactory(annotations),
-                        ParameterAnnotationWriter(annotations),
+                        ParameterAnnotationFactory(annotations),
                         beanValidations,
                         javaDocWriter
                     ),
-                    annotations,
-                    beanValidations,
-                    DefaultImportFilter()
+                    annotations
                 ),
                 when (options.modelType) {
                     "record" -> DataTypeWriterRecord(
