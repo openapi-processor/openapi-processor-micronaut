@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    groovy
     kotlin("jvm")
     `java-library`
     alias(build.plugins.versions)
@@ -38,13 +37,6 @@ kotlin {
     }
 }
 
-
-tasks.compileTestGroovy {
-    classpath += sourceSets.main.get().compileClasspath
-    classpath += files(tasks.compileKotlin.get().destinationDirectory)
-    classpath += files(tasks.compileTestKotlin.get().destinationDirectory)
-}
-
 dependencies {
     implementation (libs.openapi.processor.api)
     implementation (libs.openapi.processor.core)
@@ -61,10 +53,6 @@ dependencies {
     testImplementation (libs.openapi.processor.parser.api)
     testImplementation (libs.openapi.processor.parser.swagger)
     testImplementation (libs.openapi.processor.parser.openapi4j)
-    testImplementation (platform(libs.groovy.bom))
-    testImplementation ("org.apache.groovy:groovy")
-    testImplementation ("org.apache.groovy:groovy-nio")
-    testImplementation (libs.spock)
     testImplementation (platform(libs.kotest.bom))
     testImplementation (libs.kotest.runner)
     testImplementation (libs.kotest.table)
