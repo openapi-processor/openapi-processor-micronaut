@@ -4,7 +4,7 @@
 build-plugins = "2026.7"
 
 target-jdk = "17"
-build-jdk = "21"
+build-jdk = "25"
 
 kotlin = "2.4.10"
 
