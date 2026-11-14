@@ -15,7 +15,7 @@ import io.openapiprocessor.core.model.datatypes.StringDataType
 import io.openapiprocessor.core.openapi.HttpMethod
 import io.openapiprocessor.micronaut.processor.MicronautFrameworkAnnotations
 
-class MappingAnnotationFactoryXSpec: StringSpec({
+class MappingAnnotationFactorySpec: StringSpec({
     val factory = MappingAnnotationFactory(MicronautFrameworkAnnotations())
 
     data class TestHttpMethod(val httpMethod: HttpMethod, val path: String, val expected: String)
