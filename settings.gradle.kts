@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 
 plugins {
     id("io.github.ben-manes.versions.settings") version("0.61.0")
-    id("com.gradle.develocity").version("4.5.0")
+    id("com.gradle.develocity").version("4.6.1")
 }
 
 develocity {
@@ -31,4 +31,4 @@ develocity {
 
 rootProject.name = "openapi-processor-micronaut"
 
-//includeBuild '../openapi-processor-base'
+//includeBuild ("../openapi-processor-base")
