@@ -4,7 +4,7 @@ processor = "2026.4-SNAPSHOT"
 kotlin = "2.4.10"
 
 api = "2024.2"
-base = "2026.4-SNAPSHOT"
+base = "2026.4.x-SNAPSHOT"
 
 jacoco = "0.8.14"
 jacocolog = "4.0.1"
